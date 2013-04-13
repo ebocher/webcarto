@@ -20,7 +20,7 @@ L.Control.FullScreen = L.Control.extend({
             }
 		} else {
 			container = L.DomUtil.create('div', containerClass);
-			className = '-fullscreen';
+			className = '-fullscreen leaflet-bar';
 		}
 		
 		this._createButton(this.options.title, containerClass + className, container, this.toogleFullScreen, map);
