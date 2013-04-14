@@ -48,7 +48,7 @@ L.Control.ZoomBox = L.Control.extend({
 			 startLatLng=e.latlng;
 			 map.removeEventListener('click') ; //on ne suit (=Listen) plus l’event mouseup 
 			 
-			 //on suit l'event mousemove pour retracer le rectangle de séléction à chaque mouvement de souris
+			 //on suit l'event mousemove pour retracer le rectangle de sélection à chaque mouvement de souris
 			 map.addEventListener('mousemove', function(e3) {
 				latlng=e3.latlng;
 				//on trace le rectangle qui suit le curseur (on le crée s'il n'existe pas, sinon on le modifie)
