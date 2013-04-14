@@ -1,4 +1,4 @@
-	//Fonction qui recadre la map sur le rectangle dont les angles (diagonalement opposés) sont startLatLng et latlng
+//Fonction qui recadre la map sur le rectangle dont les angles (diagonalement opposés) sont startLatLng et latlng
 function modifBBox(startLatLng, latlng){ 
 	//Création des variables (de type <Number>) latmin latmax lngmin lngmax
 	var latmin = Math.min(startLatLng.lat, latlng.lat),
