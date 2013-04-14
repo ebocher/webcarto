@@ -18,7 +18,6 @@ function newBBox(startLatLng, latlng){
 
 
 
-
 $('#zoom').click(function() {
 
 	var startLatLng,latlng, shape;
