@@ -50,9 +50,9 @@ function onLoad() {
     map.on('zoomend', function (e) {
         $("#zoomslider").slider("value", map.getZoom());
     });
-		map.addControl(new L.Control.Scale({ position: 'bottomleft'})); //Echelle en bas à gauche
-		L.control.locate().addTo(map); //mode localisation GPS
+		map.addControl(new L.Control.Scale({ position: 'bottomleft'})); //Scale
 		L.control.zoom().addTo(map);
+		L.control.locate().addTo(map); //GPS positioning
 		L.control.mesure().addTo(map);
 		L.control.zoombox().addTo(map);
 		var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
