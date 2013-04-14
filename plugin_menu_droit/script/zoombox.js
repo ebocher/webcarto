@@ -1,4 +1,4 @@
-/*Zoom by Max*/
+﻿/*Zoom by Max*/
 	function modifBBox(coin1, coin2){ 
 //prend en argument les deux nouveaux coins de la BBox, de type LatLng
 
