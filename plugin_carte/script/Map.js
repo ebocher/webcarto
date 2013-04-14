@@ -34,11 +34,23 @@ function onLoad() {
     map = new L.Map('map', {
         center: new L.LatLng(42.805224943488675, -73.86795043945312),
         zoom: 12,
+		fullscreenControl: true, // add fullscreen control to the map
         layers: [nysdop, mapquest],
 				zoomControl : false
+
     });
+
 	map.attributionControl.setPrefix('<a href="#" id="about" onclick="chargeAbout();"> About</a>');
 	map.attributionControl.addAttribution("IRSTV FR CNRS 2488 - Atelier SIG");
+
+	// detect fullscreen toggling
+		map.on('enterFullscreen', function(){
+			if(window.console) window.console.log('enterFullscreen');
+		});
+		map.on('exitFullscreen', function(){
+			if(window.console) window.console.log('exitFullscreen');
+		});
+		
     map.on('zoomend', function (e) {
         $("#zoomslider").slider("value", map.getZoom());
     });
@@ -87,6 +99,66 @@ $(document).ready(function () {
     });
     $.fx.speeds._default = 1000;
     
+	/*creation of 2 var that countains the size fo the window*/
+				
+				var viewportwidth;
+				var viewportheight;
+				if (typeof window.innerWidth != 'undefined')
+			 {
+				  viewportwidth = window.innerWidth,
+				  viewportheight = window.innerHeight
+			 }
+			  
+			// IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
+			 
+			 else if (typeof document.documentElement != 'undefined'
+				 && typeof document.documentElement.clientWidth !=
+				 'undefined' && document.documentElement.clientWidth != 0)
+			 {
+				   viewportwidth = document.documentElement.clientWidth,
+				   viewportheight = document.documentElement.clientHeight
+			 }
+			  
+			 // older versions of IE
+			  
+			 else
+			 {
+				   viewportwidth = document.getElementsByTagName('body')[0].clientWidth,
+				   viewportheight = document.getElementsByTagName('body')[0].clientHeight
+			 }
+			  
+	/*function that changes the size of the menu if the window is resized*/	
+	var timer;
+		window.onresize = function(){
+		clearInterval( timer );
+		timer = setTimeout( function(){
+        			 if (typeof window.innerWidth != 'undefined')
+			 {
+				  viewportwidth = window.innerWidth,
+				  viewportheight = window.innerHeight
+			 }
+			  
+			// IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
+			 
+			 else if (typeof document.documentElement != 'undefined'
+				 && typeof document.documentElement.clientWidth !=
+				 'undefined' && document.documentElement.clientWidth != 0)
+			 {
+				   viewportwidth = document.documentElement.clientWidth,
+				   viewportheight = document.documentElement.clientHeight
+			 }
+			  
+			 // older versions of IE
+			  
+			 else
+			 {
+				   viewportwidth = document.getElementsByTagName('body')[0].clientWidth,
+				   viewportheight = document.getElementsByTagName('body')[0].clientHeight
+			 }
+			 $("#layersdialog").dialog({height: viewportheight})
+
+    }, 400 );
+	}
 	
 	$(function () {
         $("#layersdialog").dialog({
@@ -95,7 +167,7 @@ $(document).ready(function () {
 			draggable: false ,
             position: [0, 0],
             width: 200,
-			height: $("#map").height(),
+			height: viewportheight,
 			show: {effect: 'slide', speed: 1000, direction: "left"},
             hide: {effect: 'slide', speed: 1000, direction: "left"},
 			resizable: false,
