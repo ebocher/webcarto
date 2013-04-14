@@ -1,4 +1,3 @@
-/*******************Start measuring button***************/
 L.Control.Mesure = L.Control.extend({
     options: {
         position: 'topright',

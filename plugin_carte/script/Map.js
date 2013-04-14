@@ -54,6 +54,7 @@ function onLoad() {
 		L.control.locate().addTo(map); //mode localisation GPS
 		L.control.zoom().addTo(map);
 		L.control.mesure().addTo(map);
+		L.control.zoombox().addTo(map);
 		var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 		var osmAttrib='Map data &copy; OpenStreetMap contributors';
 		var osm = new L.TileLayer(osmUrl, {minZoom: 5, maxZoom: 18, attribution: osmAttrib});
