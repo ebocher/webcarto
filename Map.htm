@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	
 	<meta charset="utf-8" />
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
 	<link rel="stylesheet" href="plugin_carte/style/reset.css" type="text/css" media="screen">
@@ -9,14 +10,15 @@
     <link rel="stylesheet" href="plugin_menu_droit/style/L.Control.Locate.css" /> 
     <link rel="stylesheet" href="plugin_menu_droit/style/bootstrap.css" /> 
 		
-		<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
-		<script src="plugin_menu_gauche/script/jquery.js"></script>
-		<script src="plugin_menu_gauche/script/jquery-ui.js"></script>
+	<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+	<script src="plugin_menu_gauche/script/jquery.js"></script>
+	<script src="plugin_menu_gauche/script/jquery-ui.js"></script>	
+	<script src="plugin_carte/script/about.js"></script>
 
-<!-- A inclure à la toute fin -->
-		<link rel="stylesheet" type="text/css" href="plugin_carte/style/style.css">
-		<link rel="stylesheet" type="text/css" href="plugin_menu_gauche/style/style.css">
-		<link rel="stylesheet" type="text/css" href="contenu_menu.css">
+	<!-- To include at the end -->
+	<link rel="stylesheet" type="text/css" href="plugin_carte/style/style.css">
+	<link rel="stylesheet" type="text/css" href="plugin_menu_gauche/style/style.css">
+	<link rel="stylesheet" type="text/css" href="contenu_menu.css">
 
 	</head>
 	<body onload="onLoad()" onmouseup="map.dragging.enable();">
@@ -326,5 +328,11 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- Contents of the about -->
+		<div id="dialogAbout">
+			<p>Version 1.0 </br></br> Réalisé par des étudiants de l'Ecole Centrale de Nantes : </br>Nil ABRANTES, Sébastien COHENDET, Nicolas DAVID, Sylvain PALOMINOS, Maxime TERRADE</p>
+		</div>
+
 	</body>
 </html>

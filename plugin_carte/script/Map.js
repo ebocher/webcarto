@@ -37,6 +37,8 @@ function onLoad() {
         layers: [nysdop, mapquest],
 				zoomControl : false
     });
+	map.attributionControl.setPrefix('<a href="#" id="about" onclick="chargeAbout();"> About</a>');
+	map.attributionControl.addAttribution("IRSTV FR CNRS 2488 - Atelier SIG");
     map.on('zoomend', function (e) {
         $("#zoomslider").slider("value", map.getZoom());
     });
@@ -164,5 +166,10 @@ $(document).ready(function () {
 				});
 				
             });
+	
+	
+
+
 			
 });
+
