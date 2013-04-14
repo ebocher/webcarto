@@ -26,7 +26,7 @@
             alert(err.message);
         },
         title: "Où suis-je ?",
-        popupText: ["You are within ", " from this point"],
+        popupText: ["La précision de la localisation est de  ", " m."],
         setView: true, // automatically sets the map view to the user's location
         locateOptions: {}
     },
