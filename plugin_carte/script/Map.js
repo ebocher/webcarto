@@ -3,14 +3,12 @@
 
 mapquest = new L.TileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
     maxZoom: 18,
-    attribution: "Data CC-By-SA by <a href='http://openstreetmap.org/' target='_blank'>OpenStreetMap</a>, Tiles Courtesy of <a href='http://open.mapquest.com' target='_blank'>MapQuest</a>",
     subdomains: ['1', '2', '3', '4'],
     opacity: 1
 });
 
 nysdop = new L.TileLayer("http://www.orthos.dhses.ny.gov/ArcGIS/rest/services/2007/MapServer/tile/{z}/{y}/{x}.jpg", {
     maxZoom: 20,
-    attribution: "Imagery courtesy of <a href='http://www.vcgi.org/' target='_blank'>VCGI</a>",
     scheme: "xyz",
     opacity: 0
 });
