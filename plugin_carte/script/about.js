@@ -4,7 +4,7 @@ $(function() {
 	$( "#dialogAbout" ).dialog({
 		autoOpen: false,
 		draggable: true,
-		height: 170,
+		height: 200,
 		width: 300,
 		title: "About",
 		position: {

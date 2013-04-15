@@ -180,3 +180,14 @@ border-bottom: 1px solid #aaaaaa; }
     bottom: 0;
     right: 0; 
 }
+
+
+/***** About *****/
+
+#dialogAbout{
+  text-align: center;
+  font-size: 0.7em;
+  font-style:italic;
+  padding-top: 20px;
+  padding-bottom: 20px;
+} 
