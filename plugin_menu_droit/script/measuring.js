@@ -6,7 +6,7 @@ L.Control.Mesure = L.Control.extend({
 	onAdd: function (map) {
 	var self = this;
 	var className = 'leaflet-control-mesure',
-		classNames = className + ' leaflet-bar leaflet-control',
+		classNames = className + ' leaflet-bar leaflet-control leaflet-bar',
 		container = L.DomUtil.create('div', classNames);
 
 	var link = L.DomUtil.create('a', 'leaflet-bar-part', container);
