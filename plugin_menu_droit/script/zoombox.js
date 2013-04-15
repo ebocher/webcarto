@@ -64,8 +64,8 @@ L.Control.ZoomBox = L.Control.extend({
 		        map.removeEventListener('click') ; //removing the EventListener click
 				map.removeEventListener('mousemove') ; //removing the EventListener mousemove
 				//Removing the selection rectangle and changing the BBox of the map
-				map.removeLayer(shape);
 				modifBBox(startLatLng, latlng) ;
+				map.removeLayer(shape);
 				map._container.style.cursor = '';
 
 			 });	
