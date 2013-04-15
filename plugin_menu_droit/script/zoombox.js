@@ -1,43 +1,81 @@
-/*Zoom by Max*/
-	function modifBBox(coin1, coin2){ 
-//prend en argument les deux nouveaux coins de la BBox, de type LatLng
+//Function that focus the map on the rectangle. The corners of this rectangle (diagonally opposite) are startLatLng and latlng 
 
-//Création des variables (de type <Number>) latmin latmax lngmin lngmax
-var latmin = Math.min(coin1.lat, coin2.lat),
-latmax = Math.max(coin1.lat, coin2.lat) ,
-lngmin = Math.min(coin1.lng, coin2.lng) ,
-lngmax = Math.max(coin1.lng, coin2.lng) ;
+function modifBBox(startLatLng, latlng){ 
+	//Creation of the variables latmin latmax lngmin lngmax 
+	var latmin = Math.min(startLatLng.lat, latlng.lat),
+	latmax = Math.max(startLatLng.lat, latlng.lat) ,
+	lngmin = Math.min(startLatLng.lng, latlng.lng) ,
+	lngmax = Math.max(startLatLng.lng, latlng.lng) ;
 
-//Création des points pour définir la BBox puis création de la BBox 
-var southWest = new L.LatLng(latmin, lngmin),
-    northEast = new L.LatLng(latmax, lngmax),
-    BBox = new L.LatLngBounds(southWest, northEast);
+	//Creation of points to define the BoundingBox. Then creation of the BBox 
+	var southWest = new L.LatLng(latmin, lngmin),
+		northEast = new L.LatLng(latmax, lngmax),
+		BBox = new L.LatLngBounds(southWest, northEast);
 
-/*modifier la carte pour afficher la BBox en argument (avec le zoom minimal. Donc si le rectangle sélectionné est plus haut que large, on verra exactement ce qui a été sélectionné en hauteur et un peu plus en largeur)*/
-map.fitBounds(BBox);
-
+	//Cropping the map
+	map.fitBounds(BBox);
 }
-$('#zoom').click(function() {
 
-var coin1,coin2;
 
-              //on ajoute l’EventListener suivant qui permettra de lancer la fonction si le bouton est enfoncé
-              map.addEventListener('mouseup', function(e) { 
-                         // e est l’objet (de type MouseEvent) renvoyé par l’évènement mouseup
-						 //Modification du position du cadre
-						 $(document).mousemove(function(e){
-      					 $( "#Cadre" ).css( "left", "e.pageX" );
-						 $( "#Cadre" ).css( "top", "e.pageY" );
-   }); 
 
-                         coin1=e.latlng;
-           map.removeEventListener('mouseup') ; //on ne suit (=Listen) plus l’event mouseup 
-           map.addEventListener('mousedown', function(e2) {  //on suit l’event mousedown
-                                     coin2=e2.latlng;
-         map.removeEventListener('mousedown') ; //on ne suit plus l’event mousedown
-               //on dispose des deux coins => recadrage carte
-              		modifBBox(coin1, coin2) ;
-                          });	
-              });
+L.Control.ZoomBox = L.Control.extend({
+    options: {
+        position: 'topright',
+        follow: true, // follow with zoom and pan the user's location
+    },
+	onAdd: function (map) {
 
+	var className = 'leaflet-control-zoombox',
+		classNames = className + ' leaflet-bar leaflet-control',
+		container = L.DomUtil.create('div', classNames);
+
+	var link = L.DomUtil.create('a', 'leaflet-bar-part', container);
+	link.href = '#';
+	link.title = 'Zoom sur la sélection';
+
+	L.DomEvent
+		.on(link, 'click', L.DomEvent.stopPropagation)
+		.on(link, 'click', L.DomEvent.preventDefault)
+		.on(link, 'click', function() {
+
+	var startLatLng,latlng, shape;
+	map._container.style.cursor = 'crosshair';
+
+	//adding an EventListener
+	map.addEventListener('click', function(e) { 
+
+			 startLatLng=e.latlng;
+			 map.removeEventListener('click') ; //removing the EventListener
+			 
+			 //adding the EventListener mouseMove in order to draw the rectangle selection for each movement
+			 map.addEventListener('mousemove', function(e3) {
+				latlng=e3.latlng;
+				if (!shape) {
+					shape = new L.Rectangle(new L.LatLngBounds(startLatLng, latlng), {color: '#007FFF', weight: 2, opacity: 0.8, fill: true, fillColor: '#FFFFFF',	fillOpacity: 0.6});
+					map.addLayer(shape);
+				} else {
+					shape.setBounds(new L.LatLngBounds(startLatLng, latlng));
+				}
+			 });
+			 
+			 //adding the EventListener click, to know when the user has finished this selection
+			 map.addEventListener('click', function(e2) {  
+				latlng=e2.latlng;
+		        map.removeEventListener('click') ; //removing the EventListener click
+				map.removeEventListener('mousemove') ; //removing the EventListener mousemove
+				//Removing the selection rectangle and changing the BBox of the map
+				modifBBox(startLatLng, latlng) ;
+				map.removeLayer(shape);
+				map._container.style.cursor = '';
+
+			 });	
+			 
+		});
+	});
+	return container;
+	}
 });
+
+L.control.zoombox = function (options) {
+    return new L.Control.ZoomBox(options);
+};

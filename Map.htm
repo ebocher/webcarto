@@ -1,6 +1,7 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 	<head>
+	<meta charset="UTF-8" />
 		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
 		<link rel="stylesheet" href="plugin_carte/style/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="plugin_carte/style/style.css" type="text/css" media="screen">
@@ -8,12 +9,15 @@
     <link rel="stylesheet" href="plugin_menu_droit/style/L.Control.Locate.css" /> 
     <link rel="stylesheet" href="plugin_menu_droit/style/bootstrap.css" /> 
     <link rel="stylesheet" href="plugin_menu_droit/style/FullScreen.css" /> 
+    <link rel="stylesheet" href="plugin_menu_droit/style/mesure.css" /> 
+    <link rel="stylesheet" href="plugin_menu_droit/style/zoombox.css" /> 
 		
 		<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
 		<script src="plugin_menu_gauche/script/jquery.js"></script>
 		<script src="plugin_menu_gauche/script/jquery-ui.js"></script>
+		<script src="plugin_carte/script/about.js"></script>
 
-<!-- A inclure à la toute fin -->
+<!-- To include at the end -->
 		<link rel="stylesheet" type="text/css" href="plugin_carte/style/style.css">
 		<link rel="stylesheet" type="text/css" href="plugin_menu_gauche/style/style.css">
 		<link rel="stylesheet" type="text/css" href="contenu_menu.css">
@@ -24,21 +28,11 @@
 			<div id="centerColumn">
 				<div id="map">
 					<div id="basemapslidercontainer">
-						<div id="basemapslidertext">
-							<p>
-								-- Projet OGIS v1.0 --
-							</p>
-						</div>
 						<div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="basemapslider" onmousedown="map.dragging.disable();">
 							<a class="ui-slider-handle ui-state-default ui-corner-all" href="#"></a>
 						</div>
 					</div>
 
-					<div id="zoomslidercontainer">
-						<div class="ui-slider ui-slider-vertical ui-widget ui-widget-content ui-corner-all" id="zoomslider" onmousedown="map.dragging.disable();">
-							<a class="ui-slider-handle ui-state-default ui-corner-all" href="#"></a>
-						</div>
-					</div>
 
 					<div class="layers" style="font-size: 10px;">
 						<button aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="layersopener">
@@ -47,13 +41,6 @@
 					</div>
 					
 
-				</div>
-				<div id="btn-options" class="btn-container">
-					<div id="measuring-tool" class="btn btn-primary btn-large btn-margins">
-						Mesure de distance
-					</div>
-					<div id="zoom" class="btn btn-primary btn-large btn-margins">Zoomer dans un cadre</div>
-					</div>
 				</div>
 
 				<script src="plugin_menu_droit/script/L.Control.Locate.js" ></script>
@@ -326,5 +313,11 @@
 				</div>
 			</div>
 		</div>
+		
+    <!-- Contents of the about -->
+    <div id="dialogAbout">
+      <p>Version 1.0 <br/><br/> Réalisé par des étudiants de l'Ecole Centrale de Nantes : <br/>Nil ABRANTES, Sébastien COHENDET, Nicolas DAVID, Sylvain PALOMINOS, Maxime TERRADE<br/><br/><img src="plugin_carte/style/images/logo_irstv_2.png" alt="logo_irstv"/></p>
+    </div>
+
 	</body>
 </html>

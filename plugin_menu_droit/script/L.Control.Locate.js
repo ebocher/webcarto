@@ -1,4 +1,4 @@
-L.Control.Locate = L.Control.extend({
+﻿L.Control.Locate = L.Control.extend({
     options: {
         position: 'topright',
         drawCircle: true,
@@ -25,8 +25,8 @@ L.Control.Locate = L.Control.extend({
         onLocationError: function(err) {
             alert(err.message);
         },
-        title: "O� suis-je ?",
-        popupText: ["You are within ", " from this point"],
+        title: "Où suis-je ?",
+        popupText: ["La précision de la localisation est de  ", " m."],
         setView: true, // automatically sets the map view to the user's location
         locateOptions: {}
     },

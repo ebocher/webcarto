@@ -1,4 +1,4 @@
-var map, mapquest, nysdop;
+﻿var map, mapquest, nysdop;
 
 
 mapquest = new L.TileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
@@ -39,6 +39,11 @@ function onLoad() {
 				zoomControl : false
 
     });
+	
+	//About
+	map.attributionControl.setPrefix('<a href="#" id="about" onclick="chargeAbout();"> About</a>');
+	map.attributionControl.addAttribution("IRSTV FR CNRS 2488 - Atelier SIG"); 
+	
 	// detect fullscreen toggling
 		map.on('enterFullscreen', function(){
 			if(window.console) window.console.log('enterFullscreen');
@@ -50,9 +55,11 @@ function onLoad() {
     map.on('zoomend', function (e) {
         $("#zoomslider").slider("value", map.getZoom());
     });
-		map.addControl(new L.Control.Scale({ position: 'bottomleft'})); //Echelle en bas à gauche
-		L.control.locate().addTo(map); //mode localisation GPS
+		map.addControl(new L.Control.Scale({ position: 'bottomleft'})); //Scale
 		L.control.zoom().addTo(map);
+		L.control.locate().addTo(map); //GPS positioning
+		L.control.mesure().addTo(map);
+		L.control.zoombox().addTo(map);
 		var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 		var osmAttrib='Map data &copy; OpenStreetMap contributors';
 		var osm = new L.TileLayer(osmUrl, {minZoom: 5, maxZoom: 18, attribution: osmAttrib});
