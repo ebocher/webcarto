@@ -1,7 +1,6 @@
 L.Control.Mesure = L.Control.extend({
     options: {
         position: 'topright',
-        drawCircle: true,
         follow: true, // follow with zoom and pan the user's location
     },
 	onAdd: function (map) {
