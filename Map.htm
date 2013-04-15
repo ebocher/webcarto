@@ -15,8 +15,9 @@
 		<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
 		<script src="plugin_menu_gauche/script/jquery.js"></script>
 		<script src="plugin_menu_gauche/script/jquery-ui.js"></script>
+		<script src="plugin_carte/script/about.js"></script>
 
-<!-- A inclure à la toute fin -->
+<!-- To include at the end -->
 		<link rel="stylesheet" type="text/css" href="plugin_carte/style/style.css">
 		<link rel="stylesheet" type="text/css" href="plugin_menu_gauche/style/style.css">
 		<link rel="stylesheet" type="text/css" href="contenu_menu.css">
@@ -27,11 +28,6 @@
 			<div id="centerColumn">
 				<div id="map">
 					<div id="basemapslidercontainer">
-						<div id="basemapslidertext">
-							<p>
-								-- Projet OGIS v1.0 --
-							</p>
-						</div>
 						<div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="basemapslider" onmousedown="map.dragging.disable();">
 							<a class="ui-slider-handle ui-state-default ui-corner-all" href="#"></a>
 						</div>
@@ -317,5 +313,11 @@
 				</div>
 			</div>
 		</div>
+		
+    <!-- Contents of the about -->
+    <div id="dialogAbout">
+      <p>Version 1.0 <br/><br/> Réalisé par des étudiants de l'Ecole Centrale de Nantes : <br/>Nil ABRANTES, Sébastien COHENDET, Nicolas DAVID, Sylvain PALOMINOS, Maxime TERRADE<br/><br/><img src="plugin_carte/style/images/logo_irstv_2.png" alt="logo_irstv"/></p>
+    </div>
+
 	</body>
 </html>
