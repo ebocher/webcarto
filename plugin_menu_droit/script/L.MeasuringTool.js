@@ -94,7 +94,7 @@ L.MeasuringTool = L.Class.extend({
 			this._map.addLayer(this._distancePopup)
                          .fire('popupopen', { popup: this._distancePopup });
 		}
-		this.setContent(distance, centerPos);
+
 		marker.on('drag', this._updateRuler, this);
 		this._markerList.push(marker);
 	},
