@@ -60,6 +60,7 @@ L.MeasuringTool = L.Class.extend({
 	},
 
 	_onMapClick: function (e) {
+
 		var markerLocation = e.latlng;
 		var marker = new L.Marker(markerLocation, {draggable:true});
 		if (this._measureStop) { return; }
@@ -93,7 +94,7 @@ L.MeasuringTool = L.Class.extend({
 			this._map.addLayer(this._distancePopup)
                          .fire('popupopen', { popup: this._distancePopup });
 		}
-		
+		this.setContent(distance, centerPos);
 		marker.on('drag', this._updateRuler, this);
 		this._markerList.push(marker);
 	},
@@ -111,7 +112,7 @@ L.MeasuringTool = L.Class.extend({
 
 			this.setContent(distance, centerPos);
 		}
-		else if (this._measureStart)  {  //cas où on déplace le premier marker avant que le 2ème ne soit placé
+		else if (this._measureStart)  {  //case where the first marker is moved before that the 2nd one is placed on the map
 		this._measureStart = e.target.getLatLng();
 		}
 	},
