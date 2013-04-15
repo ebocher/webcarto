@@ -39,8 +39,8 @@ function onLoad() {
     });
 	
 	//About
-	map.attributionControl.setPrefix('<a href="#" id="about" onclick="chargeAbout();"> About</a>');
-	map.attributionControl.addAttribution("IRSTV FR CNRS 2488 - Atelier SIG"); 
+	map.attributionControl.setPrefix('<a href="#" id="about" onclick="chargeAbout();">About</a>');
+	map.attributionControl.addAttribution('<a href="http://www.irstv.fr/" target="_blank">IRSTV FR CNRS 2488 - Atelier SIG</a>'); 
 	
 	// detect fullscreen toggling
 		map.on('enterFullscreen', function(){
