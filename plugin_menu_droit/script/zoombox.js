@@ -1,20 +1,21 @@
-//Function that focus the map on the rectangle. The corners of this rectangle (diagonally opposite) are startLatLng and latlng
+//Fonction qui recadre la map sur le rectangle dont les angles (diagonalement opposés) sont startLatLng et latlng
 
-function newBBox(startLatLng, latlng){ 
-	//Creation of the variables latmin latmax lngmin lngmax
+function modifBBox(startLatLng, latlng){ 
+	//Création des variables (de type <Number>) latmin latmax lngmin lngmax
 	var latmin = Math.min(startLatLng.lat, latlng.lat),
 	latmax = Math.max(startLatLng.lat, latlng.lat) ,
 	lngmin = Math.min(startLatLng.lng, latlng.lng) ,
 	lngmax = Math.max(startLatLng.lng, latlng.lng) ;
 
-	//Creation of points to define the BoundingBox. Then creation of the BBox
+	//Création des points pour définir la BBox puis création de la BBox 
 	var southWest = new L.LatLng(latmin, lngmin),
 		northEast = new L.LatLng(latmax, lngmax),
 		BBox = new L.LatLngBounds(southWest, northEast);
 
-	//Cropping the map
+	/*modifier la carte pour afficher la BBox en argument (avec le zoom minimal. Donc si le rectangle sélectionné est plus haut que large, on verra exactement ce qui a été sélectionné en hauteur et un peu plus en largeur)*/
 	map.fitBounds(BBox);
 }
+
 
 
 L.Control.ZoomBox = L.Control.extend({
@@ -38,21 +39,20 @@ L.Control.ZoomBox = L.Control.extend({
 		.on(link, 'click', L.DomEvent.preventDefault)
 		.on(link, 'click', function() {
 
-
-$('#zoom').click(function() {
 	var startLatLng,latlng, shape;
 	map._container.style.cursor = 'crosshair';
 
-	//adding an EventListener 
+	//on ajoute l’EventListener suivant qui permettra de lancer la fonction si le bouton est enfoncé
 	map.addEventListener('click', function(e) { 
 
+			 // e est l’objet (de type MouseEvent) renvoyé par l’évènement mouseup
 			 startLatLng=e.latlng;
-			 map.removeEventListener('click') ; //removing the EventListener 
+			 map.removeEventListener('click') ; //on ne suit (=Listen) plus l’event mouseup 
 			 
-			 //adding the EventListener mouseMove in order to draw the rectangle selection for each movement
+			 //on suit l'event mousemove pour retracer le rectangle de sélection à chaque mouvement de souris
 			 map.addEventListener('mousemove', function(e3) {
 				latlng=e3.latlng;
-
+				//on trace le rectangle qui suit le curseur (on le crée s'il n'existe pas, sinon on le modifie)
 				if (!shape) {
 					shape = new L.Rectangle(new L.LatLngBounds(startLatLng, latlng), {color: '#007FFF', weight: 2, opacity: 0.8, fill: true, fillColor: '#FFFFFF',	fillOpacity: 0.6});
 					map.addLayer(shape);
@@ -61,14 +61,14 @@ $('#zoom').click(function() {
 				}
 			 });
 			 
-			 //adding the EventListener click, to know when the user has finished this selection
+			 //on suit l’event mousedown qui nous permet de savoir quand on a fini le recadrage
 			 map.addEventListener('click', function(e2) {  
 				latlng=e2.latlng;
-				map.removeEventListener('click') ; //removing the EventListener click
-				map.removeEventListener('mousemove') ; //removing the EventListener mousemove
-				//Removing the selection rectangle and changing the BBox of the map
+				map.removeEventListener('click') ; //on ne suit plus l’event mousedown
+				map.removeEventListener('mousemove') ; //on ne suit plus l’event mousedown
+				//on dispose des deux coins => recadrage carte et suppression du rectangle
 				map.removeLayer(shape);
-				newBBox(startLatLng, latlng) ;
+				modifBBox(startLatLng, latlng) ;
 				map._container.style.cursor = '';
 
 			 });	
@@ -82,4 +82,3 @@ $('#zoom').click(function() {
 L.control.zoombox = function (options) {
     return new L.Control.ZoomBox(options);
 };
-
