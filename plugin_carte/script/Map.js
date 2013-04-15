@@ -30,7 +30,7 @@ var greenIcon = new LeafIcon('http://labs.google.com/ridefinder/images/mm_20_gre
 
 function onLoad() {
     map = new L.Map('map', {
-        center: new L.LatLng(42.805224943488675, -73.86795043945312),
+        center: new L.LatLng(47.22,  -1.54427),
         zoom: 12,
 		fullscreenControl: true, // add fullscreen control to the map
         layers: [nysdop, mapquest],
