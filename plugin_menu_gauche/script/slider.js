@@ -1,5 +1,5 @@
 /**
-*				Script for the left menu (slider)
+*				Script for the differents type of slider of the left menu
 **/
 
 // Opacity refresh with slider
