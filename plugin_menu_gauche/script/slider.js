@@ -4,18 +4,17 @@
 
 // Opacity refresh with slider
 
-function refreshOpacity(Calque) {
-	var opacite = $( this ).slider( "value" );
-	$( "Calque" ).css( "opacity :" + opacite );
-};
-
 $(function() { //Slider /!\ Only for one, for now !
-	$( "#calque1" ).slider({
+	$( "#slider" ).slider({
 		orientation: "horizontal",
 		range: "min",
-		max: 100,
-		value: 100,
-		//slide: refreshOpacity(this),
-		//change: refreshOpacity(this)
+		value: 1,
+        min: 0,
+        max: 1,
+        step: 0.1,
+		slide: function (event, ui) {
+            mapquest.setOpacity(ui.value);
+            nysdop.setOpacity(1 - ui.value);
+			}
 	});
 });
