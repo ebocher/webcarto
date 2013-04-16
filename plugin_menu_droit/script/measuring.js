@@ -1,4 +1,4 @@
-L.Control.Mesure = L.Control.extend({
+﻿L.Control.Mesure = L.Control.extend({
     options: {
         position: 'topright',
         follow: true, // follow with zoom and pan the user's location
