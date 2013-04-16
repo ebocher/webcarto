@@ -19,6 +19,7 @@
 		<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
 		<script src="plugin_menu_gauche/script/jquery.js"></script>
 		<script src="plugin_menu_gauche/script/jquery-ui.js"></script>
+		<script src="plugin_menu_gauche/script/slider.js"></script>
 		<script src="plugin_carte/script/about.js"></script>
 
 <!-- To include at the end -->
@@ -31,11 +32,6 @@
 		<div id="container">	
 			<div id="centerColumn">
 				<div id="map">
-					<div id="basemapslidercontainer">
-						<div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="basemapslider" onmousedown="map.dragging.disable();">
-							<a class="ui-slider-handle ui-state-default ui-corner-all" href="#"></a>
-						</div>
-					</div>
 
 					<div class="layers" style="font-size: 10px;">
 						<button aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="layersopener">
@@ -66,6 +62,7 @@
 							
 								<!-- First the declaration of the accordion-->
 								<div id="accordion_head1">
+
 								</div>
 								<!-- Then the content of the accordion -->
 								<div class="contenu">
@@ -77,6 +74,7 @@
 													<div class="contenu">
 														<div>
 															<p>info</p>
+															<div id="slider"></div>
 														</div>
 														<div>
 															<p>info</p>

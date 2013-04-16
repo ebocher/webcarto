@@ -7,7 +7,7 @@ function modifBBox(startLatLng, latlng){
 	lngmin = Math.min(startLatLng.lng, latlng.lng) ,
 	lngmax = Math.max(startLatLng.lng, latlng.lng) ;
 
-	//Creation of points to define the BoundingBox. Then creation of the BBox 
+	//Creation of points to dgefine the BoundingBox. Then creation of the BBox 
 	var southWest = new L.LatLng(latmin, lngmin),
 		northEast = new L.LatLng(latmax, lngmax),
 		BBox = new L.LatLngBounds(southWest, northEast);
