@@ -1,4 +1,4 @@
-L.Control.Mesure = L.Control.extend({
+﻿L.Control.Mesure = L.Control.extend({
     options: {
         position: 'topright',
         follow: true, // follow with zoom and pan the user's location
@@ -12,6 +12,7 @@ L.Control.Mesure = L.Control.extend({
 	var link = L.DomUtil.create('a', 'leaflet-bar-part', container);
 	link.href = '#';
 	link.title = 'Mesure de distance entre deux points';
+	link.id = "measuring";
 
 	L.DomEvent
 		.on(link, 'click', L.DomEvent.stopPropagation)
