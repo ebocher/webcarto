@@ -28,3 +28,10 @@
 .leaflet-control-zoombox a {
 	background-image: url(images/icon-zoombox.png);
 }
+.leaflet-control-zoombox.active 	a{
+	background-color: #888888;
+}
+
+.leaflet-control-zoombox.active a:hover {
+	background-color: #888888;
+}
