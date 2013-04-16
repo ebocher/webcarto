@@ -3,14 +3,12 @@
 
 mapquest = new L.TileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
     maxZoom: 18,
-    attribution: "Data CC-By-SA by <a href='http://openstreetmap.org/' target='_blank'>OpenStreetMap</a>, Tiles Courtesy of <a href='http://open.mapquest.com' target='_blank'>MapQuest</a>",
     subdomains: ['1', '2', '3', '4'],
     opacity: 1
 });
 
 nysdop = new L.TileLayer("http://www.orthos.dhses.ny.gov/ArcGIS/rest/services/2007/MapServer/tile/{z}/{y}/{x}.jpg", {
     maxZoom: 20,
-    attribution: "Imagery courtesy of <a href='http://www.vcgi.org/' target='_blank'>VCGI</a>",
     scheme: "xyz",
     opacity: 0
 });
@@ -32,7 +30,7 @@ var greenIcon = new LeafIcon('http://labs.google.com/ridefinder/images/mm_20_gre
 
 function onLoad() {
     map = new L.Map('map', {
-        center: new L.LatLng(42.805224943488675, -73.86795043945312),
+        center: new L.LatLng(47.22,  -1.54427),
         zoom: 12,
 		fullscreenControl: true, // add fullscreen control to the map
         layers: [nysdop, mapquest],
@@ -41,8 +39,8 @@ function onLoad() {
     });
 	
 	//About
-	map.attributionControl.setPrefix('<a href="#" id="about" onclick="chargeAbout();"> About</a>');
-	map.attributionControl.addAttribution("IRSTV FR CNRS 2488 - Atelier SIG"); 
+	map.attributionControl.setPrefix('<a href="#" id="about" onclick="chargeAbout();">About</a>');
+	map.attributionControl.addAttribution('<a href="http://www.irstv.fr/" target="_blank">IRSTV FR CNRS 2488 - Atelier SIG</a>'); 
 	
 	// detect fullscreen toggling
 		map.on('enterFullscreen', function(){
