@@ -2,15 +2,19 @@
 <html>
 	<head>
 	<meta charset="UTF-8" />
+	
 		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
-		<link rel="stylesheet" href="plugin_carte/style/reset.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="plugin_carte/style/style.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="plugin_carte/style/jquery-ui.css"  type="text/css">
-    <link rel="stylesheet" href="plugin_menu_droit/style/L.Control.Locate.css" /> 
-    <link rel="stylesheet" href="plugin_menu_droit/style/bootstrap.css" /> 
-    <link rel="stylesheet" href="plugin_menu_droit/style/FullScreen.css" /> 
-    <link rel="stylesheet" href="plugin_menu_droit/style/mesure.css" /> 
-    <link rel="stylesheet" href="plugin_menu_droit/style/zoombox.css" /> 
+		
+		<link rel="stylesheet" href="plugin_carte/style/reset.css">
+		<link rel="stylesheet" href="plugin_carte/style/style.css">
+		<link rel="stylesheet" href="plugin_carte/style/jquery-ui.css">
+		<link rel="stylesheet" href="plugin_carte/style/style.css">
+		
+		<link rel="stylesheet" href="plugin_menu_droit/style/L.Control.Locate.css" /> 
+		<link rel="stylesheet" href="plugin_menu_droit/style/bootstrap.css" /> 
+		<link rel="stylesheet" href="plugin_menu_droit/style/FullScreen.css" /> 
+		<link rel="stylesheet" href="plugin_menu_droit/style/mesure.css" /> 
+		<link rel="stylesheet" href="plugin_menu_droit/style/zoombox.css" /> 
 	
 		<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
 		<script src="plugin_menu_gauche/script/jquery.js"></script>
@@ -18,11 +22,11 @@
 		<script src="plugin_carte/script/about.js"></script>
 
 <!-- To include at the end -->
-		<link rel="stylesheet" type="text/css" href="plugin_carte/style/style.css">
-		<link rel="stylesheet" type="text/css" href="plugin_menu_gauche/style/style.css">
-		<link rel="stylesheet" type="text/css" href="contenu_menu.css">
+		<link rel="stylesheet" href="plugin_menu_gauche/style/style.css">
+		<link rel="stylesheet" href="contenu_menu.css">
 
 	</head>
+	
 	<body onload="onLoad()" onmouseup="map.dragging.enable();">
 		<div id="container">	
 			<div id="centerColumn">
@@ -33,16 +37,14 @@
 						</div>
 					</div>
 
-
 					<div class="layers" style="font-size: 10px;">
 						<button aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="layersopener">
 							
 						</button>
 					</div>
-					
-
 				</div>
 
+				<!-- Need to respect the order of the include -->
 				<script src="plugin_menu_droit/script/L.Control.Locate.js" ></script>
 				<script src="plugin_menu_droit/script/L.MeasuringTool.js"></script>
 				<script src="plugin_menu_droit/script/L.Zoom.Control.js"></script>
@@ -53,61 +55,33 @@
 				<!--<script src="plugin_menu_droit/script/Control.FullScreen.js"></script>-->
 			</div>
 
-		<div id="dialog">
-		
-
-			
-			<div id="contenu_gauche">				
-				<div  id="close_button">
-				</div>
-				
-		
-
-				
-				<div id="layersdialog">
-				<form name="checkform">
-						<div id="accordion">
-							<div id="accordion_head1">
+			<div id="dialog">			
+				<div id="contenu_gauche">				
+					<div  id="close_button">
+					</div>
+					
+					<div id="layersdialog">
+						<form name="checkform">
+							<div id="accordion">
 							
-							</div>
-							<div class="contenu">
-								<div>
-							<div id="layersdialog">
-										<form name="checkform">
+								</div>
+								<!-- Then the content of the accordion -->
+								<div class="contenu">
+									<div>
+										<div id="layersdialog">
+											<form name="checkform">
 												<div id="sous_accordion1">
 													<h3><a href="#">carte1</a></h3>
 													<div class="contenu">
 														<div>
-															<input name="layer1" value="checked" checked="checked" type="checkbox">layer1<br>
-															
-																			<script>
-																			$(function() {
-																			// setup master volume
-																			$( "#master" ).slider({
-																			value: 60,
-																			orientation: "horizontal",
-																			range: "min",
-																			animate: true
-																			});
-																			});
-																			</script>
-																		 <style>
-																		#eq span {
-																		height:120px; float:left; margin:15px
-																		}
-																		</style>
-																		<div class="ui-state-default ui-corner-all ui-helper-clearfix" style="padding: 0px;">
-																		<span class="ui-icon ui-icon-volume-on" style="margin: auto;"></span>
-																		</div>
-
+															<p>info</p>
 														</div>
 														<div>
-															<input name="layer2" value="checked" checked="checked" type="checkbox">layer2<br>
+															<p>info</p>
 														</div>
 														<div>
-															<input name="layer3" value="checked" checked="checked" type="checkbox">layer3<br>
+															<p>info</p>
 														</div>
-
 													</div>
 								
 													<h3><a href="#">carte2</a></h3>
@@ -139,206 +113,166 @@
 															<p>info</p>
 														</div>
 													</div>
-													
-													
 												</div>
-												
 											</form>
-											
 										</div>
+									</div>
+								</div>
+			
+								<div id="accordion_head2">
+								</div>
+								<div class="contenu">
+									<div>
+										<div id="layersdialog">
+											<form name="checkform">
+												<div id="sous_accordion2">
+												
+													<h3><a href="#">carte1</a></h3>
+													<div class="contenu">
+														<div>
+															<p>info</p>
+														</div>
+														<div>
+															<p>info</p>
+														</div>
+														<div>
+															<p>info</p>
+														</div>
+
+													</div>
+								
+													<h3><a href="#">carte2</a></h3>
+													<div class="contenu">
+														<div>
+															<p>info</p>
+														</div>
+														<div>
+															<p>info</p>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
 								</div>
 								
-
-							</div>
-		
-							<div id="accordion_head2">
-							
-							</div>
-							<div class="contenu">
-								<div>
-																					<div id="layersdialog">
-																					<form name="checkform">
-																							<div id="sous_accordion2">
-																								<h3><a href="#">carte1</a></h3>
-																								<div class="contenu">
-																									<div>
-																										<p>info</p>
-																									</div>
-																									<div>
-																										<p>info</p>
-																									</div>
-																									<div>
-																										<p>info</p>
-																									</div>
-
-																								</div>
-																			
-																								<h3><a href="#">carte2</a></h3>
-																								<div class="contenu">
-																									<div>
-																										<p>info</p>
-																									</div>
-																									<div>
-																										<p>info</p>
-																									</div>
-																								</div>
-																							
-																								
-																							</div>
-																							
-																						</form>
-																						
-																					</div>
+								<div id="accordion_head3">
+								</div>
+								<div class="contenu">
+									<div>
+										<div id="layersdialog">
+											<form name="checkform">
+												<div id="sous_accordion3">
+													<h3><a href="#">carte1</a></h3>
+													<div class="contenu">
+														<div>
+															<p>info</p>
+														</div>
+														<div>
+															<p>info</p>
+														</div>
+														<div>
+															<p>info</p>
+														</div>
+													</div>
+								
+													<h3><a href="#">carte2</a></h3>
+													<div class="contenu">
+														<div>
+															<p>info</p>
+														</div>
+														<div>
+															<p>info</p>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
 								</div>
 								
-
-							</div>
-							
-							
-							<div id="accordion_head3">
-							
-							</div>
-							<div class="contenu">
-								<div>
-																					<div id="layersdialog">
-																					<form name="checkform">
-																							<div id="sous_accordion3">
-																								<h3><a href="#">carte1</a></h3>
-																								<div class="contenu">
-																									<div>
-																										<p>info</p>
-																									</div>
-																									<div>
-																										<p>info</p>
-																									</div>
-																									<div>
-																										<p>info</p>
-																									</div>
-
-																								</div>
-																			
-																								<h3><a href="#">carte2</a></h3>
-																								<div class="contenu">
-																									<div>
-																										<p>info</p>
-																									</div>
-																									<div>
-																										<p>info</p>
-																									</div>
-																								</div>
-																							
-																								
-																							</div>
-																							
-																						</form>
-																						
-																					</div>
+								<div id="accordion_head4">
+								</div>
+								<div class="contenu">
+									<div>
+										<div id="layersdialog">
+											<form name="checkform">
+												<div id="sous_accordion4">
+													<h3><a href="#">carte1</a></h3>
+													<div class="contenu">
+														<div>
+															<p>info</p>
+														</div>
+														<div>
+															<p>info</p>
+														</div>
+														<div>
+															<p>info</p>
+														</div>
+													</div>
+								
+													<h3><a href="#">carte2</a></h3>
+													<div class="contenu">
+														<div>
+															<p>info</p>
+														</div>
+														<div>
+															<p>info</p>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
 								</div>
 								
-
-							</div>
-							
-							<div id="accordion_head4">
-							
-							</div>
-							<div class="contenu">
-								<div>
-																					<div id="layersdialog">
-																					<form name="checkform">
-																							<div id="sous_accordion4">
-																								<h3><a href="#">carte1</a></h3>
-																								<div class="contenu">
-																									<div>
-																										<p>info</p>
-																									</div>
-																									<div>
-																										<p>info</p>
-																									</div>
-																									<div>
-																										<p>info</p>
-																									</div>
-
-																								</div>
-																			
-																								<h3><a href="#">carte2</a></h3>
-																								<div class="contenu">
-																									<div>
-																										<p>info</p>
-																									</div>
-																									<div>
-																										<p>info</p>
-																									</div>
-																								</div>
-																							
-																								
-																							</div>
-																							
-																						</form>
-																						
-																					</div>
-								</div>
+								<div id="accordion_head5">
 								
-
-							</div>
-							
-							<div id="accordion_head5">
-							
-							</div>
-							<div class="contenu">
-								<div>
-																					<div id="layersdialog">
-																					<form name="checkform">
-																							<div id="sous_accordion5">
-																								<h3><a href="#">carte1</a></h3>
-																								<div class="contenu">
-																									<div>
-																										<p>info</p>
-																									</div>
-																									<div>
-																										<p>info</p>
-																									</div>
-																									<div>
-																										<p>info</p>
-																									</div>
-
-																								</div>
-																			
-																								<h3><a href="#">carte2</a></h3>
-																								<div class="contenu">
-																									<div>
-																										<p>info</p>
-																									</div>
-																									<div>
-																										<p>info</p>
-																									</div>
-																								</div>
-																							
-																								
-																							</div>
-																							
-																						</form>
-																						
-																					</div>
 								</div>
+								<div class="contenu">
+									<div>
+										<div id="layersdialog">
+											<form name="checkform">
+												<div id="sous_accordion5">
+													<h3><a href="#">carte1</a></h3>
+													<div class="contenu">
+														<div>
+															<p>info</p>
+														</div>
+														<div>
+															<p>info</p>
+														</div>
+														<div>
+															<p>info</p>
+														</div>
+													</div>
 								
-
-							</div>
-						
+													<h3><a href="#">carte2</a></h3>
+													<div class="contenu">
+														<div>
+															<p>info</p>
+														</div>
+														<div>
+															<p>info</p>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
 							
-						</div>
-						
-					</form>
-					
-				</div>
-
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 		
-    <!-- Contents of the about -->
-    <div id="dialogAbout">
-      <p>Version 1.0 <br/><br/> Réalisé par des étudiants de l'Ecole Centrale de Nantes : <br/>Nil ABRANTES, Sébastien COHENDET, Nicolas DAVID, Sylvain PALOMINOS, Maxime TERRADE<br/><br/><img src="plugin_carte/style/images/logo_irstv_2.png" alt="logo_irstv"/></p>
-    </div>
+		<!-- Contents of the about -->
+		<div id="dialogAbout">
+			<p>Version 1.0 <br/><br/> Réalisé par des étudiants de l'Ecole Centrale de Nantes : <br/>Nil ABRANTES, Sébastien COHENDET, Nicolas DAVID, Sylvain PALOMINOS, Maxime TERRADE<br/><br/><img src="plugin_carte/style/images/logo_irstv_2.png" alt="logo_irstv"/></p>
+		</div>
 
 	</body>
 </html>
