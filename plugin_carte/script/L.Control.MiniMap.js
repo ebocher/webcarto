@@ -1,3 +1,8 @@
+/**
+*		Class MiniMap from LeafLet 
+**/
+
+
 L.Control.MiniMap = L.Control.extend({
 	options: {
 		position: 'bottomright',

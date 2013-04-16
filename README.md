@@ -4,6 +4,44 @@ WebCarto
 Portail web pour la consultation de carte en ligne
 
 
+# Plugin map : #
+
+
+## Structure : ##
+
+From the file map.html :
+
+> < div id="map" >
+Is the element used by leaflet to display the map
+
+## Style : ##
+
+The different css propreties are defined in those files :
+
+> /plugin_carte/style/style.css
+> /plugin_carte/style/reset.css
+> /plugin_carte/style/jquery-ui.css
+
+
+The position of the button close is defined thanks to JavaScript
+
+## Javascript : ##
+
+The map and its layers and controls are defined in the file 
+
+> /plugin_carte/script/Map.js
+
+
+The pop-up "about" and its behaviour is defined in the file :
+
+> /plugin_carte/script/about.js
+
+The declaration of the class of the minimap is done thanks to :
+
+> /plugin_carte/script/L.Control.MiniMap.js
+
+
+
 # Plugin left menu : #
 
 

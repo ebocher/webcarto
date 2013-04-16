@@ -1,18 +1,4 @@
-/*******************************************************
-TITLE: Fixed One-Column #2 Layout (Basic) V1.0 (Beta)
-DATE: 20070807
-AUTHOR: The CSS Tinderbox - http://www.csstinderbox.com
-*******************************************************/
-
 body {
-margin:20px;
-padding:0;
-height:100%;
-background-color:#ffffff;
-color:#000000;  
-text-align:center;
-font-family:Verdana, Arial, Helvetica, sans-serif;
-font-size:16px;
 }
 
 a {

@@ -1,4 +1,6 @@
-/***** About.js *****/
+/**
+*		About.js 
+**/
 
 $(function() {
 	$( "#dialogAbout" ).dialog({
