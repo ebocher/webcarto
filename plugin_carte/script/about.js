@@ -4,8 +4,8 @@ $(function() {
 	$( "#dialogAbout" ).dialog({
 		autoOpen: false,
 		draggable: true,
-		height: 200,
-		width: 300,
+		height: 220,
+		width: 220,
 		title: "About",
 		position: {
 			my: "right bottom", 
@@ -13,16 +13,14 @@ $(function() {
 			of: ".leaflet-control-attribution.leaflet-control"
 		},
 		show: {
-			effect: "fold", 
-			size:10,
-			horizFirst:true,
-			duration: 1000
+			effect: "fade", 
+			direction:"down",
+			duration: 1200
 		},
 		hide: {
-			effect: "fold",
-			size:10,
-			horizFirst:true,
-			duration: 1000
+			effect: "fade", 
+			direction:"down",
+			duration: 1200
 		}
 	});
 	

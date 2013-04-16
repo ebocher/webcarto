@@ -26,7 +26,7 @@ L.Control.ZoomBox = L.Control.extend({
 	onAdd: function (map) {
 
 	var className = 'leaflet-control-zoombox',
-		classNames = className + ' leaflet-bar leaflet-control',
+		classNames = className + ' leaflet-bar leaflet-control leaflet-bar',
 		container = L.DomUtil.create('div', classNames);
 
 	var link = L.DomUtil.create('a', 'leaflet-bar-part', container);
