@@ -1,4 +1,4 @@
-/*
+﻿/*
 * This simple measuring tool is created to measure two points.
 * It allows to change the icons for the markers as well as 
 * sets a class for the label for the pop up information (which you can style it yourself)

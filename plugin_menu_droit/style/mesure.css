@@ -1,4 +1,4 @@
-.leaflet-container .leaflet-control-mesure {
+﻿.leaflet-container .leaflet-control-mesure {
     margin-left: 13px;
     margin-top: 12px;
 }
@@ -30,5 +30,9 @@
 }
 
 .leaflet-control-mesure .active {
+	background-color: #888888;
+}
+
+.leaflet-control-mesure .active:hover {
 	background-color: #888888;
 }
