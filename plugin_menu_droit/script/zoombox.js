@@ -50,8 +50,11 @@ L.Control.ZoomBox = L.Control.extend({
 		map._container.style.cursor = 'crosshair';
 		
 		//Tool Measuring Disable
+		if(measuringTool)
+		{
 		measuringTool.disable();
 		document.getElementById("measuring").className = "leaflet-bar-part";
+		}
 		
 		//adding an EventListener
 		map.addEventListener('click', function(e) { 
