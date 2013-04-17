@@ -1,5 +1,10 @@
-﻿var map, mapquest, nysdop;
+﻿/**
+*		creation of the map (the main element of LeafLet)
+**/
 
+var map, mapquest, nysdop;
+
+//Definition of the different layers.
 
 mapquest = new L.TileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
     maxZoom: 18,
@@ -27,6 +32,7 @@ var greenIcon = new LeafIcon('http://labs.google.com/ridefinder/images/mm_20_gre
     orangeIcon = new LeafIcon('http://labs.google.com/ridefinder/images/mm_20_orange.png');
 	
 
+	//Creation of the map
 
 function onLoad() {
     map = new L.Map('map', {
@@ -53,6 +59,7 @@ function onLoad() {
     map.on('zoomend', function (e) {
         $("#zoomslider").slider("value", map.getZoom());
     });
+		//Adding of the different Controls
 		map.addControl(new L.Control.Scale({ position: 'bottomleft'})); //Scale
 		L.control.zoom().addTo(map);
 		L.control.locate().addTo(map); //GPS positioning
