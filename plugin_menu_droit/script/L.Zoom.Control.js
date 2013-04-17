@@ -1,4 +1,4 @@
-/*
+﻿/*
 * L.Control.Zoom is used for the default zoom buttons on the map.
 */
  
@@ -16,7 +16,7 @@ this._map = map;
 this._zoomInButton = this._createButton(
 '+', 'Zoom', zoomName + '-in', container, this._zoomIn, this);
 this._zoomOutButton = this._createButton(
-'-', 'D�zoom', zoomName + '-out', container, this._zoomOut, this);
+'-', 'Dézoom', zoomName + '-out', container, this._zoomOut, this);
  
 map.on('zoomend baselayerchange', this._updateDisabled, this);
  

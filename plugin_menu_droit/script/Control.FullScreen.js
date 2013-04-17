@@ -1,4 +1,4 @@
-L.Control.FullScreen = L.Control.extend({
+﻿L.Control.FullScreen = L.Control.extend({
 	options: {
 		position: 'topright',
 		title: 'Full Screen'
