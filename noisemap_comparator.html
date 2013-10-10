@@ -1,0 +1,299 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ANR EvalPDU</title>
+        <!-- Open the page with the good size -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.css" />
+        <!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.ie.css" /><![endif]-->
+
+        <script src="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.js"></script>
+        <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+
+        <!-- Intégration du CSS Bootstrap -->
+        <link href="js/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+        <link href="js/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <!-- Intégration de la libraire de composants du Bootstrap -->
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+
+        <!--Plugin groupedlayer-->
+        <script src="js/leaflet/groupedlayercontrol/js/leaflet.groupedlayercontrol.js"></script>
+        <link rel="stylesheet" href="js/leaflet/groupedlayercontrol/css/leaflet.groupedlayercontrol.css" />
+
+        <!--Plugin mouse position-->
+        <script src="js/leaflet/mouseposition/js/L.Control.MousePosition.js"></script>
+        <link rel="stylesheet" href="js/leaflet/mouseposition/js/L.Control.MousePosition.css" />
+
+        <!--Plugin pour synchroniser les maps-->
+        <script type="text/javascript" src="js/leaflet/mapsync/js/L.Map.Sync.js"></script>
+
+        <!-- Un hack en attendant le support du single tile https://github.com/Leaflet/Leaflet/issues/558-->
+        <script src="js/leaflet/singletile/js/TileLayer.WMS.incrementalSingleTile.js"></script>
+
+	<!--Plugin geosearch-->
+	<script src="js/leaflet/geosearch/js/l.control.geosearch.js"></script>
+	<script src="js/leaflet/geosearch/js/l.geosearch.provider.openstreetmap.js"></script>
+	<link rel="stylesheet" href="js/leaflet/geosearch/css/l.geosearch.css" />
+
+	<!--Plugin groupedlayer-->
+	<script src="js/leaflet/groupedlayercontrol/js/leaflet.groupedlayercontrol.js"></script>
+	<link rel="stylesheet" href="js/leaflet/groupedlayercontrol/css/leaflet.groupedlayercontrol.css" />
+
+
+        <!-- Size of the maps -->
+        <style type="text/css">
+            html, body { background-color: white; width: 100%; height: 100%; margin: 0; }
+            #map1, #map2 { width: 49.9%; height: 93%; top: 5%;}
+            #map1 { float: left; }
+            #map2 { float: right; }
+
+	/*Legend and frame style*/
+            .legend {
+                text-align: left;
+                line-height: 16px;
+            }
+            .legend i {
+                width: 16px;
+                height: 16px;
+                float: left;
+                margin-right: 8px;
+            }
+            #legendBar {
+                z-index: 500;
+                position: absolute;
+                top: 7%;
+                bottom: 0;
+                right: 0;
+                width: auto;
+                background: white;
+                background: rgba(255,255,255,0.8);
+                color: #555;
+                box-shadow: 0 0 15px rgba(0,0,0,0.2);
+                border-radius: 5px;
+                padding-right: 20px;
+                padding-bottom: 20px;
+                padding-left: 20px;
+                display: none;
+                overflow:auto;
+            }
+
+
+        </style>
+
+    </head>
+
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+
+                <div class="container">
+		
+	<ul class="nav pull-left">
+	<a  href="http://www.irstv.fr" target="_blank" ><img src="resources/logo_irstv.png"></a>
+   	</ul>	
+                    <a class="brand">Comparateur de cartes</a>                   
+                     
+		<ul class="nav">
+				
+                            <li><a data-toggle="modal" href="#modalDisclaimer">A propos</a></li>
+                            <li><a href="http://www.irstv.fr" target="_blank">En savoir plus</a></li>
+                            <li><a href="javascript:toggleDiv('legendBar');">Légende(s)</a></li>
+                        </ul>
+	<ul class="nav pull-right">
+
+	<a  href="http://www.orbisgis.org" target="_blank" ><img src="resources/logo_og.png"></a>
+	</ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ajout du cadre pour les legendes -->	
+    <div id="legendBar">
+    </div>
+
+    <!-- Ajout des deux cadres map -->
+    <div id="map1"></div>
+    <div id="map2"></div>
+
+    <script type="text/javascript">
+        var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png';
+        var basemap = new L.TileLayer(cloudmadeUrl, {maxZoom: 18});
+
+        //Add some layers delivered with OrbisGIS server
+        var noiseMap = L.tileLayer.wmsIncrementalSingleTile("http://services.orbisgis.org/wms/wms", {
+            layers: 'bat_resid_2008_nantes_noiseLevel',
+            format: 'image/png',
+            transparent: true,
+            styles: 'bat_resid_2008_nantes_noiseLevel',
+            version: '1.3.0',
+            attribution: "LDEN max en dB par bâtiments"
+        });
+
+        var iris_ref_2008 = L.tileLayer.wmsIncrementalSingleTile("http://services.orbisgis.org/wms/wms", {
+            layers: 'iris2008_lden_greaterthan68',
+            format: 'image/png',
+            transparent: true,
+            styles: 'iris_ldengreaterthan68_2008_categorize',
+            version: '1.3.0',
+            attribution: "LDEN > 68 par IRIS"
+        });
+
+
+
+	//Map1
+        var map1 = L.map('map1', {
+            layers: [basemap, noiseMap],
+            center: new L.LatLng(47.22, -1.54427),
+            zoom: 12, minZoom: 12,
+        });
+
+        
+
+	//Création des groupes pour la carte 1
+	var baseLayers1 = {
+	"Fond de carte": basemap
+	};
+
+
+	// Groupe de couches par scenarios
+	var groupedOverlays = {
+	"Référence 2008": {
+	"LDEN par bâtiments": noiseMap,
+	"LDEN par IRIS": iris_ref_2008
+	}
+	};
+
+
+	//Load the group layers plugin
+	new L.control.groupedLayers(baseLayers1, groupedOverlays, {position: 'topleft'}).addTo(map1);
+
+
+        var basemap2 = L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png',
+                {maxZoom: 18});
+
+	//noiselevel_building_test1.se
+        var noiseMap_test1 = L.tileLayer.wmsIncrementalSingleTile("http://services.orbisgis.org/wms/wms", {
+            layers: 'bat_resid_2008_nantes_noiseLevel',
+            format: 'image/png',
+            transparent: true,
+            styles: 'noiselevel_building_test1',
+            version: '1.3.0',
+            attribution: "LDEN scenario 1 max en dB par bâtiments"
+        });
+
+  	var iris_test1 = L.tileLayer.wmsIncrementalSingleTile("http://services.orbisgis.org/wms/wms", {
+            layers: 'iris2008_lden_greaterthan68',
+            format: 'image/png',
+            transparent: true,
+            styles: 'iris_ldengreaterthan68_test1_categorize',
+            version: '1.3.0',
+            attribution: "LDEN > 68 par IRIS"
+        });
+
+	//Map2 
+        var map2 = L.map('map2', {
+            layers: [basemap2, noiseMap_test1],
+            center: new L.LatLng(47.22, -1.54427),
+            zoom: 12, minZoom: 12,
+        });
+
+	//Création des groupes pour la carte 1
+	var baseLayers1 = {
+	"Fond de carte": basemap
+	};
+
+
+	// Groupe de couches par scenarios
+	var groupedOverlays = {
+	"Scenario test 1": {
+	"LDEN par bâtiments": noiseMap_test1,
+	"LDEN par IRIS": iris_test1
+	}
+	};
+
+
+	//Load the group layers plugin
+	new L.control.groupedLayers(baseLayers1, groupedOverlays, {position: 'topleft'}).addTo(map2);
+
+
+	//Load mouse position plugin
+        new L.control.mousePosition().addTo(map1);
+        new L.control.mousePosition().addTo(map2);
+
+        map1.sync(map2);
+        map2.sync(map1);
+        L.control.scale().addTo(map1)
+
+	//Load the geosearch plugin
+        new L.Control.GeoSearch({
+            provider: new L.GeoSearch.Provider.OpenStreetMap()
+        }).addTo(map1);
+
+        //Create a legend
+        legend1 = function() {
+            var div = L.DomUtil.create('div', 'info legend'),
+                    labels = ['<h6>Nuisance sonore en dB</h6>',
+                '<i style="background:#4CC800"></i><45<br>',
+                '<br><i style="background:#55FF00"></i>45-50<br>',
+                '<br><i style="background:#B9FF73"></i>50-55<br>',
+                '<br><i style="background:#FFFF00"></i>55-60<br>',
+                '<br><i style="background:#FFAA00"></i>60-65<br>',
+                '<br><i style="background:#FF0000"></i>65-70<br>',
+                '<br><i style="background:#D500FF"></i>70-75<br>',
+                '<br><i style="background:#960064"></i>>75<br>'];
+            div.innerHTML = labels.join('');
+            return div;
+        };
+
+        //Create another legend	
+        legend2 = function() {
+            var div = L.DomUtil.create('div', 'info legend'),
+                    labels = ["<h6>Pourcentage<br> d'habitants (> 68dB)</h6>",
+                '<br><i style="background:#F7F4F9"></i><5<br>',
+                '<br><i style="background:#D4B9DA"></i>5-10<br>',
+                '<br><i style="background:#C994C7"></i>10-20<br>',
+                '<br><i style="background:#E7298A"></i>20-30<br>',
+                '<br><i style="background:#CE1256"></i>30-50<br>',
+                '<br><i style="background:#67001F"></i>>50<br>'];
+            div.innerHTML = labels.join('');
+            return div;
+        };
+        //Add the legends to the legend frame
+        $("#legendBar").html(legend1);
+        $("#legendBar").append(legend2);
+
+	
+
+
+    </script>
+
+
+    <!-- Show hide the legend frame -->
+    <script type="text/javascript">
+        function toggleDiv(divId, divId1) {
+            $("#" + divId).fadeToggle('slow');
+        }
+    </script>
+
+
+    <!-- Content not shown at load -->
+    <div class="modal hide fade" id="modalDisclaimer">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>A propos</h3>
+        </div>
+        <div class="modal-body">
+            <p>Les resultats présentés sur ces cartes sont issus des travaux de l'ANR EVALPDU.</p>
+            <p>Ces resultats proviennent de simulations scientifiques réalisées avec la plateforme OrbisGIS. Les auteurs déclinent 
+                toute responsabilité concernant l'interprétation qui pourrait en être faite.</p>
+            <p>Le comparateur de cartes utilise l'application Leaflet ainsi que les services developpés par l'Atelier SIG. Son developpement a été réalisé dans le cadre du programme SOGVILLE financé par GéoPAL (http://www.geopal.org).</p>
+            Pour toute information complémentaire veuillez contacter l'Atelier SIG à l'adresse suivante ateliersig@ec-nantes.fr</p>
+        </div>
+        <div class="modal-footer">
+            <a href="javascript:void(0)" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
+        </div>
+    </div>
+</body>
+</html>
