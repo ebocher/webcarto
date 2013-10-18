@@ -80,6 +80,10 @@ div.logo h1 {
 	transition: background-color ease-in 0.3s;
 }
 
+#menuFilter li>a {
+    display: block;
+}
+
 #menuFilter li:hover {
     background: #0e9eed;
 }
