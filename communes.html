@@ -209,7 +209,7 @@
             };
 
             //Load the group layers plugin
-            new L.control.groupedLayers(baseLayers, groupedOverlays).addTo(map);
+            new L.control.groupedLayers(baseLayers, groupedOverlays ).addTo(map);
 
             //Load mouse position plugin
             new L.control.mousePosition().addTo(map);
@@ -254,14 +254,19 @@
         <div id="about" class="reveal-modal">
             <a href="http://www.cartopolis.org"><img src="images/cartopolis_logo.png" width="50" alt="CartoPOLIS" style="float: right; margin: 50px 0 0 20px;" /></a>
             <h2>A propos de l'évolution démographique et géographique des communes</h2>
-            <p>Les resultats présentés dans ce navigateur sont issus du projet de recherche <strong>GEBD - Belgrand (Grand Equipement Base de Données)</strong> piloté par l'IFSTTAR.</p>
+            <p>Les resultats présentés dans ce navigateur sont issus du projet de recherche <strong>GEBD - Belgrand (Grand Equipement Base de Données)</strong> piloté par l'
+                <a href="http://www.ifsttar.fr" target="blank" title="PostGIS"><u>IFSTTAR</u></a>.</p>
+            <p>Les données exploitées pour produire les cartes sont stockées dans un modèle de données spatio-temporel. Celui-ci permet de stocker l'histoire de chaque objet 
+                et offre ainsi la possibilité reconstruire des cartes pour des dates données. </p> 
             <p>Les données exploitées pour produire les cartes sont stockées dans un modèle de données spatio-temporel. Ce modèle a été developpé par l'équipe de
-                l'Atelier SIG de l'IRSTV. Il utilise la base de données relationnelle PostgreSQL et son cartouche spatiale PostGIS.</p>
+                l'Atelier SIG de l'IRSTV. Il utilise la base de données relationnelle 
+                <a href="http://www.postgresql.org" target="blank" title="PostgreSQL"><u>PostgreSQL</u></a> et son cartouche spatiale 
+                <a href="http://www.postgis.net" target="blank" title="PostGIS"><u>PostGIS</u></a>.</p>
             <p>Les données démographiques communales son issues de l'exploitation des fiches du site internet 
                 <a href="http://cassini.ehess.fr" target="blank" title="Cassini EHESS"><u>"Des villages de Cassini aux communes d'aujourd'hui"</u></a> 
                 ainsi que des tableaux de recensemment de la population de l' <a href="http://www.insee.fr" target="blank" title="INSEE"><u>INSEE</u></a></p>
             <p>Les auteurs déclinent toute responsabilité concernant l'interprétation qui pourrait en être faite.</p>
-            <p>              
+            <p>          
             <p>
                 <strong>En savoir plus ?</strong> Visitez <a href="http://belgrand-gebd.ifsttar.fr/" target="blank" title="Belgrand"><u>la page du programme de recherche Belgrand.</u>.</a>
             </p>
