@@ -73,12 +73,12 @@
 
         <script type="text/javascript">
 
-            var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png';
-            var basemap = new L.TileLayer(cloudmadeUrl, {maxZoom: 18});
+            var cloudmadeUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
+            var basemap = new L.TileLayer(cloudmadeUrl, {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors', maxZoom: 18});
 
             var map = new L.Map('map', {
                 layers: [basemap],
-                center: new L.LatLng(47.22, -1.54427), zoom: 12
+                center: new L.LatLng(47.22, -1.54427), zoom: 13
             });
 
             //Create a custom group of layers
@@ -201,7 +201,7 @@
             }).addTo(map);
 
             //Load the view center control
-            var viewCenter = new L.Control.ViewCenter({title: 'Zoom sur la commune de Nantes', vcLatLng: [47.22, -1.54427], vcZoom: 12});
+            var viewCenter = new L.Control.ViewCenter({title: 'Zoom sur la commune de Nantes', vcLatLng: [47.22, -1.54427], vcZoom: 13});
             map.addControl(viewCenter);
 
             // Add our loading control in the same position and pass the
