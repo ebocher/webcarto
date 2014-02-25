@@ -6,7 +6,6 @@
         <meta name="description" content="Cartes de bruit sur la ville de Nantes ">
         <meta name="author" content="Erwan Bocher">
 
-
         <link rel="stylesheet" href="js/leaflet/core/leaflet.css" />
         <!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.ie.css" /><![endif]-->
 
@@ -48,19 +47,20 @@
         <!-- Global CSS for the page -->
         <link rel="stylesheet" href="css/main.css">
 
-
     </head>
     <body>
         <div class="logo">
             <img src="images/cartopolis_4.png" />
-            <h1>Modélisation de la cartographie du bruit à Nantes</h1>
+            <h1>Cartographie sonore de la ville de Nantes <br>-Approche simplifiée avec un SIG-</h1>
         </div>
         <ul id="menuFilter">
             <li><a href="javascript:toggleDiv('legendBar');">Légende(s)</a></li>
             <li>
+                <a href="#" data-reveal-id="donnees">Données</a>
+            </li>	
+            <li>
                 <a href="#" data-reveal-id="about">A propos</a>
             </li>
-            <li><a href="http://www.irstv.fr" target="_blank">En savoir plus</a></li>
         </ul>
         <!-- Ajout du cadre pour les legendes -->	
         <div id="legendBar">
@@ -83,7 +83,7 @@
 
             //Create a custom group of layers
             var baseLayers = {
-                "Fond de carte": basemap,
+                "Fond de carte": basemap
             };
 
             //Add some layers delivered with geoserver
@@ -125,53 +125,52 @@
 
 
             map.addLayer(noiseMap_bat_2008);
-           
-            
+
+
             var iris_contour = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/wms", {
                 layers: 'IRSTV:iris2008_lden2008_nantes',
                 format: 'image/png',
                 transparent: true,
                 styles: 'polygon_vide',
-                version: '1.3.0',
+                version: '1.3.0'
             });
-            
+
             var iris_lden_2008 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/wms", {
                 layers: 'IRSTV:iris2008_lden2008_nantes',
                 format: 'image/png',
                 transparent: true,
                 styles: 'Noise_map_db_pop_sup_68db',
-                version: '1.3.0',
+                version: '1.3.0'
             });
-            
-            
-             var iris_lden_test1 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/wms", {
+
+
+            var iris_lden_test1 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/wms", {
                 layers: 'IRSTV:iris2008_lden_test1_nantes',
                 format: 'image/png',
                 transparent: true,
                 styles: 'Noise_map_db_pop_sup_68db',
-                version: '1.3.0',
+                version: '1.3.0'
             });
-            
-             var iris_lden_test2 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/wms", {
+
+            var iris_lden_test2 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/wms", {
                 layers: 'IRSTV:iris2008_lden_test2_nantes',
                 format: 'image/png',
                 transparent: true,
                 styles: 'Noise_map_db_pop_sup_68db',
-                version: '1.3.0',
+                version: '1.3.0'
             });
-            
+
             var iris_lden_test4 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/wms", {
                 layers: 'IRSTV:iris2008_lden_test4_nantes',
                 format: 'image/png',
                 transparent: true,
                 styles: 'Noise_map_db_pop_sup_68db',
-                version: '1.3.0',
+                version: '1.3.0'
             });
-            
-            
+
 
             map.addLayer(iris_contour);
-            
+
             // LDEN pour les bâtiments
             var groupedLDENBat = {
                 "LDEN max en dB(A) par bâtiments": {
@@ -180,12 +179,12 @@
                     "Scénario test 2": noiseMap_bat_test2,
                     "Scénario test 4": noiseMap_bat_test4
                 },
-                "Exposition de la population (% d'habs > 68 dB(A))": {
+                "Exposition de la population <br>(% d'habs > 68 dB(A))": {
                     "Contours IRIS en 2008": iris_contour,
-                    "Situation de référence en 2008":iris_lden_2008,
-                    "Scénario test 1" : iris_lden_test1,
-                    "Scénario test 2" : iris_lden_test2,
-                    "Scénario test 4" : iris_lden_test4,
+                    "Situation de référence en 2008": iris_lden_2008,
+                    "Scénario test 1": iris_lden_test1,
+                    "Scénario test 2": iris_lden_test2,
+                    "Scénario test 4": iris_lden_test4
                 }
             };
 
@@ -202,7 +201,7 @@
             }).addTo(map);
 
             //Load the view center control
-            var viewCenter = new L.Control.ViewCenter({title: 'Zoom sur la Ville de Nantes', vcLatLng: [47.22, -1.54427], vcZoom: 12});
+            var viewCenter = new L.Control.ViewCenter({title: 'Zoom sur la commune de Nantes', vcLatLng: [47.22, -1.54427], vcZoom: 12});
             map.addControl(viewCenter);
 
             // Add our loading control in the same position and pass the
@@ -212,28 +211,27 @@
             });
             map.addControl(loadingControl);
 
-                       
-             //Create a legend for noise map
+
+            //Create a legend for noise map
             legend1 = function() {
-                var div = L.DomUtil.create('div', 'info legend'), labels = ["<h6>Nuisance sonore en dB(A)</h6>"];
+                var div = L.DomUtil.create('div', 'info legend'), labels = ["<h6>Nuisance sonore <br> en dB(A)</h6>"];
                 div.innerHTML = labels.join('');
                 div.innerHTML += '<img src="http://www.cartopolis.org/geoserver/IRSTV/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=IRSTV:noise_level_bat_resid_2008_nantes" alt="legend" width="58" height="140">';
                 return div;
             };
 
-           //Create a legend for noise map
+            //Create a legend for noise map
             legend2 = function() {
-                var div = L.DomUtil.create('div', 'info legend'), labels = ["<h6>Pourcentage<br> d'habitants (> 68dB)</h6>"];
+                var div = L.DomUtil.create('div', 'info legend'), labels = ["<h6>Pourcentage d'habitants <br> (> 68dB (A))</h6>"];
+                ;
                 div.innerHTML = labels.join('');
                 div.innerHTML += '<img src="http://www.cartopolis.org/geoserver/IRSTV/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=IRSTV:iris2008_lden2008_nantes" alt="legend" width="66" height="120">';
                 return div;
             };
-            
+
             //Add the legends to the legend frame
             $("#legendBar").html(legend1);
             $("#legendBar").append(legend2);
-
-
         </script>
 
         <!-- Show hide the legend frame -->
@@ -245,18 +243,58 @@
 
         <div id="about" class="reveal-modal">
             <a href="http://www.cartopolis.org"><img src="images/cartopolis_logo.png" width="50" alt="CartoPOLIS" style="float: right; margin: 50px 0 0 20px;" /></a>
-            <h2>A propos des cartes de bruit</h2>
-            <p>Les resultats présentés dans ce navigateurs sont issus des travaux de l'ANR Eval-PDU.</p>
-            <p>Ces resultats proviennent de simulations réalisées avec la plateforme OrbisGIS 
-                par le Laboratoire d’acoustique environnementale de l'<a href="http://www.ifsttar.fr" target="blank" title="IFSTTAR"><u>IFSTTAR</u>.</a>. Les auteurs déclinent 
-                toute responsabilité concernant l'interprétation qui pourrait en être faite.</p>
-            <p>              
-            <p>
-                <strong>En savoir plus ?</strong> Visitez <a href="http://semfinalevalpdu.sciencesconf.org/" target="blank" title="Eval-PDU"><u>la page de synthèse du programme de recherche Eval-PDU</u>.</a></p>
+            <small><strong>A propos des cartes de bruit</strong></small>
+            <p><small>Les cartes présentées dans ce visualiseur sont issues des travaux de recherche en acoustique et géographie réalisés dans le cadre de l'ANR Eval-PDU
+                    par le Laboratoire d’acoustique environnementale de l'<a href="http://www.ifsttar.fr" target="blank" title="IFSTTAR"><u>IFSTTAR</u>.</a> et l'équipe de l'Atelier-SIG.</small></p>
+            <p><small>Ces travaux ont permis de mettre au point une methode alternative pour la réalisation de cartographies sonores dans le but d'évaluer les impacts environnementaux d’un Plan de Déplacement Urbain (PDU) 
+                    et de leurs conséquences socio-économiques. En travaillant, d’une part, sur la simplification de la méthodologie réglementaire, et d’autre part, sur l’optimisation des algorithmes de calcul, nous avons pu développer 
+                    une approche de production de cartes de bruit avec un gain de temps très significatif (gain de plusieurs jours par rapport aux outils classiques). Néanmoins, la grande valeur ajoutée de ce travail par rapport aux approches existantes réside dans l'intégration de notre méthode au sein 
+                    du Système d'Information Géographique OrbisGIS, sous la forme d’un module complémentaire.</small></p>
+            <p><small>Les données, ainsi que l’ensemble des traitements a posteriori, y compris le couplage avec d’autres types de données (données démographiques, données géographiques...) peut ainsi être manipulé au sein d’un unique outil.</small></p>
+            <p><small><strong>Note : </strong> Les cartes présentées sont le fruit de calculs scientifiques. II n'est reconnu aucune valeur juridique particulière au contenu des données mises à disposition.
+                    Les auteurs déclinent toute responsabilité concernant l'interprétation qui pourrait en être faite.</small></p>
+            <p><small><strong>Remerciements : </strong> Les auteurs remercient le programme GEOPAL et notamment l'action SOGVILLE
+                    qui a permis de finaliser les travaux de recherches en géomatique sur la cartographie du bruit et notamment la
+                    construction de ce dispositif de visualisation intégré dans la plateforme CartoPolis.</small></p>
+                    <p><small>Contacts : judicael.picaut@ifsttar.fr ou erwan.bocher@ec-nantes.fr</small></p>
+            <p><small><strong>En savoir plus ?</strong> Visitez <a href="http://semfinalevalpdu.sciencesconf.org/" target="blank" title="Eval-PDU"><u>la page de synthèse du programme de recherche Eval-PDU</u>.</a></small></p>
             <a class="close-reveal-modal">×</a>
         </div>
         <div class="reveal-modal-bg"></div>
 
+        <div id="donnees" class="reveal-modal">
+            <a href="http://www.cartopolis.org"><img src="images/cartopolis_logo.png" width="50" alt="CartoPOLIS" style="float: right; margin: 50px 0 0 20px;" /></a>
+            <p><small>La méthode de production de cartes sonores a été  appliquée à l’agglomération Nantaise</small></p>
+            <small><strong>Données d'entrée</strong></small>
+            <p><small>Les données d'entrée du modèle d'emissions sonores sont d'une part la représentation du réseau routier et des bâtiments de la BDTopo de l'IGN
+                    et d'autre part la modélisation du traffic routier.
+                    Cette derniere donnée, produite par le CETE de l'Ouest est basée sur l'exploitation d'un modèle multimodal conçu pour confronter une demande de déplacements à une offre de transport.</small></p>
+
+             <small><strong>Scenarios</strong></small>
+            <p><small>Le dispositif de modélisation est alimenté en données réelles pour les années de référence (ici 2008), pour lesquelles des validations sont donc
+                    possibles, et en données virtuelles (modèle de traffic) permettant de simuler les variations d'impacts environnementaux générées par
+                    des scénarios alternatifs représentatifs d'actions majeures du PDU qui ont été réalisées ou au contraire qui ont été envisagées mais n'ont pas été réalisées, ou encore qui
+                    sont envisageables dans l'avenir.</small></p>
+                    <p><small>   Nous présentons les cartographies pour 3 scenarios : </small></p>
+                    <ul><small>1. Baisse de la demande auto en supprimant 25% des déplacements auto qui traduisent un taux de remplissage des véhicules en hausse de 33%</small></ul>
+
+                    <ul><small>2. Augmentation de la demande globale de déplacement de 20% (hausse de la population ou de la mobilité de 20%)</small></ul>
+                    <ul><small>3. Multiplication par deux des prix du carburantl</small></ul>
+
+             <small><strong>Bibliographie</strong></small>
+            <p><small>Mestayer P., 2012, Évaluation des impacts environnementaux d'un PDU et de leurs conséquences socio-économiques : 
+                    développements méthodologiques et tests sur le PDU de Nantes Métropole, Programme ANR Villes Durables ANR-08-VILL-0005
+                    rapport scientifique final.</small></p>
+            <p><small>Picaut J. et Bocher E., 2010, La cartographie sonore d’une ville simplifiée grâce à l’utilisation d’un logiciel SIG, Rapport annuel INRETS/LCPC 2010, p. 39.</small></p>
+            <p><small>Ertz O., Bocher E., Laurent M., Petit G. et Rappo D., 2010, Standard-centric authoring and publication for
+                    cartographic, WebMGS 2010, 1st International Workshop on Pervasive Web Mapping, Geoprocessing and
+                    Services, Como, Italy, August 26 to 27, 2010.</small></p>
+            <p><small>Fortin N., Picaut J., Bocher E, Petit  G., Guéganno A. et Dutilleux G., 2012, A simple approach for making
+                    noise maps within a GIS software, Acoustics 2012, 23-27 avril 2012, Nantes. Actes Société Française
+                    d’Acoustique.</small></p>
+            <a class="close-reveal-modal">×</a>
+        </div>
+        <div class="reveal-modal-bg"></div>
 
     </body>
 </html>
