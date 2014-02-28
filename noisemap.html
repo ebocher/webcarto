@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="bootleaf/assets/groupedlayercontrol/css/leaflet.groupedlayercontrol.css" />
         <link href="bootleaf/assets/css/main.css" rel="stylesheet" type="text/css">
 
-      
+
         <link rel="apple-touch-icon" href="bootleaf/assets/img/favicon-152.png">
         <link rel="shortcut icon" sizes="196x196" href="bootleaf/assets/img/favicon-196.png">
 
@@ -66,7 +66,7 @@
         <!-- Manage legend frame -->	
         <div id="legendBar">
         </div>
-  
+
 
         <div id="map"></div>
         <div id="sidebar">
@@ -82,6 +82,80 @@
                 <li class="list-group-item">2. Augmentation de la demande globale de déplacement de 20% (hausse de la population ou de la mobilité de 20%).</li>
                 <li class="list-group-item">3. Multiplication par deux des prix du carburant.</li>                                   
             </ul>
+
+            <strong>Répartition de la population par classes de niveau sonore</strong>
+            <br>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead> 
+                        <tr> 
+                            <th></th> 
+                            <th> 2008 </th> 
+                            <th> T1 </th> 
+                            <th> T2 </th> 
+                            <th> T4 </th> 
+                        </tr> 
+                        <tr> 
+                            <th> Population </th> 
+                            <th> % </th> 
+                            <th> % </th> 
+                            <th> % </th> 
+                            <th> % </th> 
+                        </tr> 
+                    </thead>
+                    <tbody>
+                        <tr> 
+                            <th BGCOLOR="#7FFF00"> < 50 db </th> 
+                            <td > 23.9 </td> 
+                            <td > 24.8 </td> 
+                            <td > 23.8 </td> 
+                            <td > 24.6 </td> 
+                        </tr> 
+                        <tr> 
+                            <th BGCOLOR="CCE85A"> 50-55 db </th> 
+                            <td > 10.3 </td> 
+                            <td > 10.2 </td> 
+                            <td > 10.0 </td> 
+                            <td > 9.8 </td> 
+                        </tr> 
+                        <tr> 
+                            <th BGCOLOR="#FFFF00"> 55-60 db </th> 
+                            <td > 11.9 </td> 
+                            <td > 12.3 </td> 
+                            <td > 11.8 </td> 
+                            <td > 11.9 </td> 
+                        </tr> 
+                        <tr> 
+                            <th BGCOLOR="#FFAA00"> 60-65 db </th> 
+                            <td > 19.3 </td> 
+                            <td > 20.3 </td> 
+                            <td > 18.3 </td> 
+                            <td > 19.4 </td> 
+                        </tr> 
+                        <tr> 
+                            <th BGCOLOR="#FF0000"> 65-70 db </th> 
+                            <td > 19.0 </td> 
+                            <td > 18.1 </td> 
+                            <td > 19.8 </td> 
+                            <td > 19.0 </td> 
+                        </tr> 
+                        <tr> 
+                            <th BGCOLOR="#D500FF"> 70-75 db </th> 
+                            <td > 12.9 </td> 
+                            <td > 11.8 </td> 
+                            <td > 13.5 </td> 
+                            <td > 12.9 </td> 
+                        </tr> 
+                        <tr> 
+                            <th BGCOLOR="#960064"> > 75 db </th> 
+                            <td > 2.6 </td> 
+                            <td > 2.4 </td> 
+                            <td > 2.7 </td> 
+                            <td > 2.6 </td> 
+                        </tr> 
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div id="aboutModal" class="modal fade" tabindex="-1" role="dialog">
@@ -183,8 +257,8 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-        
-              <!-- Show hide the legend frame -->
+
+        <!-- Show hide the legend frame -->
         <script type="text/javascript">
                         function toggleDiv(divId) {
                             $("#" + divId).fadeToggle('slow');
