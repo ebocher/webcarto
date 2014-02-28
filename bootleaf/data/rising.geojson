@@ -1,0 +1,7 @@
+{
+"type": "FeatureCollection",
+                                                                                
+"features": [
+{ "type": "Feature", "id": 0, "properties": { "NAME": "Equipe RISING", "TEL": "+33240376867", "URL": "http:\/\/www.cartopolis.org", "ADDRESS1": "1 Rue No&euml;, 44300 Nantes" }, "geometry": { "type": "Point", "coordinates": [ -1.54691, 47.24948 ] } }
+]
+}
