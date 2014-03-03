@@ -9,7 +9,7 @@ var rising = L.geoJson(null, {
     pointToLayer: function (feature, latlng) {
         return L.marker(latlng, {
             icon: L.icon({
-                iconUrl: "bootleaf/assets/img/here.png",
+                iconUrl: "img/here.png",
                 iconSize: [32, 32],
                 iconAnchor: [12, 28],
                 popupAnchor: [0, -25]
@@ -45,7 +45,7 @@ var rising = L.geoJson(null, {
         }
     }
 });
-$.getJSON("bootleaf/data/rising.geojson", function (data) {
+$.getJSON("data/rising.geojson", function (data) {
     rising.addData(data);
 });
 
@@ -65,7 +65,7 @@ var basemap = L.tileLayer(cloudmadeUrl, {attribution: '&copy; <a href="http://os
 
 map = L.map("map", {
     zoom: 13,
-    center: [47.22, -1.54427],
+    center: bounds.getCenter(),
     layers: [basemap, rising]
 });
 
@@ -177,10 +177,12 @@ var groupedLDENBat = {
 
 
 //Load the group layers plugin
-var layerControl = L.control.groupedLayers(baseLayers, groupedLDENBat, {
-    collapsed: isCollapsed
-});
+var layerControl = L.control.groupedLayers(baseLayers, groupedLDENBat);
 map.addControl(layerControl);
+
+//Load mouse position plugin
+var mousePosition =  L.control.mousePosition();
+map.addControl(mousePosition);
 
 var sidebar = L.control.sidebar("sidebar", {
     closeButton: true,
@@ -216,9 +218,21 @@ $("#searchbox").click(function() {
     $(this).select();
 });
 
-addressResult = function(city, state, country) {
-     result = "";
+addressResult = function(house_number, road, city, state, country) {
+    result = "";
+    if (house_number !== undefined) {
+        result += house_number;
+    }    
+    if (road !== undefined) {
+        if (result.length !== 0) {
+            result += ", ";
+        }
+        result += road;
+    }
     if(city !== undefined){
+        if (result.length !== 0) {
+            result += ", ";
+        }
         result += city;
     }    
     if(state !== undefined){
@@ -250,9 +264,8 @@ $(document).one("ajaxStop", function() {
             filter: function(list) {
                 return $.map(list, function(osm) {
                     return {
-                        name: addressResult(osm.address["city"], osm.address["state"], osm.address["country"]),
-                        lat: osm.lat,
-                        lng: osm.lon,
+                        name: addressResult(osm.address["house_number"], osm.address["road"], osm.address["city"], osm.address["state"], osm.address["country"]),
+                        bbox: osm.boundingbox,
                         source: "GeoNames"
                     };
                 });
@@ -281,12 +294,15 @@ $(document).one("ajaxStop", function() {
         displayKey: "name",
         source: geonamesBH.ttAdapter(),
         templates: {
-            header: "<h4 class='typeahead-header'><img src='bootleaf/assets/img/globe.png' width='20' height='20'>&nbsp;Résultat(s)</h4>"
+            header: "<h4 class='typeahead-header'><img src='img/globe.png' width='20' height='20'>&nbsp;Résultat(s)</h4>"
         }
     }).on("typeahead:selected", function(obj, datum) {
-
+        
         if (datum.source === "GeoNames") {
-            map.setView([datum.lat, datum.lng], 14);
+             var   southWest = new L.LatLng(datum.bbox[0],datum.bbox[2]),
+                northEast = new L.LatLng(datum.bbox[1], datum.bbox[3]),
+                bounds = new L.LatLngBounds(southWest, northEast);
+            map.fitBounds(bounds);
         }
         ;
         if ($(".navbar-collapse").height() > 50) {

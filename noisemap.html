@@ -10,16 +10,17 @@
         <meta name="author" content="Erwan Bocher">
         <title>Cartographie du bruit à Nantes</title>
 
-        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+         <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" rel="stylesheet" type="text/css">
-        <link href="bootleaf/assets/leaflet-sidebar/L.Control.Sidebar.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="bootleaf/assets/groupedlayercontrol/css/leaflet.groupedlayercontrol.css" />
-        <link href="bootleaf/assets/css/main.css" rel="stylesheet" type="text/css">
+        <link href="leaflet/leaflet-sidebar/L.Control.Sidebar.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="leaflet/groupedlayercontrol/leaflet.groupedlayercontrol.css" />
+        <link rel="stylesheet" href="leaflet/mouseposition/L.Control.MousePosition.css" />
+        <link href="css/main.css" rel="stylesheet" type="text/css">
 
 
-        <link rel="apple-touch-icon" href="bootleaf/assets/img/favicon-152.png">
-        <link rel="shortcut icon" sizes="196x196" href="bootleaf/assets/img/favicon-196.png">
+        <link rel="apple-touch-icon" href="img/favicon-152.png">
+        <link rel="shortcut icon" sizes="196x196" href="img/favicon-196.png">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -70,7 +71,7 @@
 
         <div id="map"></div>
         <div id="sidebar">
-            <a href="http://www.cartopolis.org"><img src="bootleaf/assets/img/cartopolis_logo.png" width="50" alt="CartoPOLIS" style="float: right; margin: 50px 0 0 20px;" /></a>            
+            <a href="http://www.cartopolis.org"><img src="img/cartopolis_logo.png" width="50" alt="CartoPOLIS" style="float: right; margin: 50px 0 0 20px;" /></a>            
             <h2>Scenarios de modélisation</h2>           
             <p>La chaîne de modélisation des cartes de bruit est alimentée en données réelles pour les années de référence (ici 2008, voir "A propos"), pour lesquelles des validations sont donc
                 possibles, et en données virtuelles (modèle de trafic) permettant de simuler les variations d'impacts environnementaux générées par
@@ -163,7 +164,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <a href="http://www.cartopolis.org"><img src="bootleaf/assets/img/cartopolis_logo.png" width="50" alt="CartoPOLIS" style="float: right; margin: 50px 0 0 20px;" /></a>            
+                        <a href="http://www.cartopolis.org"><img src="img/cartopolis_logo.png" width="50" alt="CartoPOLIS" style="float: right; margin: 50px 0 0 20px;" /></a>            
                         <h4 class="modal-title">A propos des cartes sonores</h4>
                     </div>
                     <div class="modal-body">
@@ -267,11 +268,14 @@
 
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="bootleaf/assets/typeahead/typeahead.bundle.min.js"></script>
+        <script type="text/javascript" src="typeahead/typeahead.bundle.min.js"></script>
         <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
-        <script type="text/javascript" src="bootleaf/assets/leaflet-sidebar/L.Control.Sidebar.js"></script>
-        <script type="text/javascript" src="bootleaf/assets/groupedlayercontrol/js/leaflet.groupedlayercontrol.js"></script>
-        <script type="text/javascript" src="bootleaf/assets/js/main.js"></script>       
+        <script type="text/javascript" src="leaflet/leaflet-sidebar/L.Control.Sidebar.js"></script>
+        <!--Plugin groupedlayer-->
+        <script type="text/javascript" src="leaflet/groupedlayercontrol/leaflet.groupedlayercontrol.js"></script>
+        <!--Plugin mouse position-->
+        <script type="text/javascript" src="leaflet/mouseposition/L.Control.MousePosition.js"></script>
+        <script type="text/javascript" src="maps/noisemap_config.js"></script>       
 
     </body>
 </html>

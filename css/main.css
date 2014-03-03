@@ -1,102 +1,99 @@
-
-/** General page styling **/
-html {
-    background-color: #ffffff;
-}
-
-#main {
+html, body, #map {
+    height: 100%;
+    width: 100%;
     overflow: hidden;
 }
-
-/*--Gérer la position fixed pour IE6--*/
-html #fade {
+body {
+    padding-top: 50px;
+}
+input[type="radio"], input[type="checkbox"] {
+    margin: 0;
+}
+#loading {
     position: absolute;
+    width: 220px;
+    height: 19px;
+    top: 50%;
+    left: 50%;
+    margin: -10px 0 0 -110px;
+    z-index: 20001;
 }
-html .popup_block {
-    position: absolute;
-}
-
-#main {
-    position: relative;
-}
-
-header h1 {
-    color: #777;
-    text-align: left;    
-    font-size: 24px;
+.leaflet-control-layers label {
     font-weight: normal;
-    margin-left: 10px;
+    margin-bottom: 0px;
 }
-
-header p {
-    text-align: center;
-    font-size: 13px;
-    color: #777;
+.table {
+    margin-bottom: 0px;
 }
-
-div.logo{
-    overflow:hidden;
+.navbar .navbar-brand {
+    font-weight: bold;
+    font-size: 25px;
+    color: white;
 }
-
-div.logo img {
-    width: 150px;   
-    float: left;
-    margin-left: 10px;
+.navbar-collapse.in {
+    overflow-y: hidden;
 }
-
-div.logo h1 {
-    color: #777;
-    text-align: center;    
-    font-size: 24px;
-    font-weight: normal;
-    margin-left: 10px;
+.typeahead {
+    background-color: #FFFFFF;
 }
-
-
-/**
- * Header menu filter 
- */
-#menuFilter {
-    list-style-type: none;
-    text-align: center;
-    margin: 0 7% 0 1%;
+.tt-dropdown-menu {
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 4px;
+    padding: 4px 0;
+    width: 100%;
+    max-height: 300px;
+    overflow: auto;
 }
-
-#menuFilter li {
-    font-size: 12px;
-    float: left;
-    padding: 6px 0 4px 0;
+.tt-suggestion {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 3px 10px;
+}
+.tt-suggestion.tt-cursor {
+    background-color: #0097CF;
+    color: #FFFFFF;
     cursor: pointer;
-    margin: 0 2% 0 1%;
-    width: 8%;
-    -webkit-transition: all 0.15s ease-out;
-    -moz-transition: all 0.15s ease-out;
-    -o-transition: all 0.15s ease-out;
-    transition: all 0.15s ease-out;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.2) inset;
-    transition: background-color ease-in 0.3s;
 }
-
-#menuFilter li>a {
+.tt-suggestion p {
+    margin: 0;
+}
+.tt-suggestion + .tt-suggestion {
+    border-top: 1px solid #ccc;
+}
+.typeahead-header {
+    margin: 0 5px 5px 5px;
+    padding: 3px 0;
+    border-bottom: 2px solid #333;
+}
+.has-feedback .form-control-feedback {
+    position: absolute;
+    top: 0;
+    right: 0;
     display: block;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
 }
-
-#menuFilter li:hover {
-    background: #0e9eed;
+.leaflet-popup-content {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
-
-#menuFilter li.active {
-    background: #333333;
-    color: #ffffff;
+.leaflet-popup-content-wrapper {
+    border-radius: 5px;
 }
-
-#menuFilter li a:hover, a:visited, a:link, a:active
-{
-    color: #000;
-    text-decoration: none;
+.leaflet-sidebar {
+    z-index: 1020;
+}
+.leaflet-sidebar .close {
+    right: 0px;
+    top: 5px;
+    background: transparent;
 }
 
 /*Legend and frame style*/
@@ -129,14 +126,25 @@ div.logo h1 {
     overflow:auto;
 }
 
-
-@media only screen and (max-width : 768px) {
-    #menuFilter li {
-        width: 100%;
-        float: none;
+@media (max-width: 992px) {
+    .navbar .navbar-brand {
+        font-size: 18px;
     }
-    #legendBar{
-        float: none;
+}
+@media (max-width: 767px){
+    .url-break {
+        word-break: break-all;
+        word-break: break-word;
+        -webkit-hyphens: auto;
+        hyphens: auto;
     }
-}  
-
+}
+/* Print Handling */
+@media print {
+    .navbar {
+        display: none !important;
+    }
+    .leaflet-control-container {
+        display: none !important;
+    }
+}

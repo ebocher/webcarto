@@ -1,116 +1,13 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Atelier-SIG Web-Carto</title>
-  		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <head>
+        <title>Atelier-SIG Web-Carto</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta http-equiv="refresh" content="0; URL=http://www.cartopolis.org">
+    </head>
 
-		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.css" />
-		<!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.ie.css" /><![endif]-->
-		
-		<script src="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.js"></script>
-		<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-		
-		<!--Plugin geosearch-->
-		<script src="js/leaflet/geosearch/js/l.control.geosearch.js"></script>
-		<script src="js/leaflet/geosearch/js/l.geosearch.provider.openstreetmap.js"></script>
-		<link rel="stylesheet" href="js/leaflet/geosearch/css/l.geosearch.css" />
-		
-		<!--Plugin minimap-->
-		<script src="js/leaflet/minimap/js/Control.MiniMap.js"></script>
-		<link rel="stylesheet" href="js/leaflet/minimap/css/Control.MiniMap.css" />
-		
-		<!--Plugin groupedlayer-->
-		<script src="js/leaflet/groupedlayercontrol/js/leaflet.groupedlayercontrol.js"></script>
-		<link rel="stylesheet" href="js/leaflet/groupedlayercontrol/css/leaflet.groupedlayercontrol.css" />
+    <body>
+        <h1>Redirection vers www.cartopolis.org dans quelques secondes...</h1>
+    </body>
 
-		<!--Plugin mouse position-->
-		<script src="js/leaflet/mouseposition/js/L.Control.MousePosition.js"></script>
-		<link rel="stylesheet" href="js/leaflet/mouseposition/css/L.Control.MousePosition.css" />
-		
-	</head>
-<body>
-	<div id="map" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
-	
-	<script type="text/javascript">
-		
-		var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png';
-		var basemap = new L.TileLayer(cloudmadeUrl, {maxZoom: 18});
-		
-		var map = new L.Map('map', {
-			layers: [basemap], 
-			center: new L.LatLng(47.22,  -1.54427), zoom: 12
-		});
-
-		//Add some layers delivered with OrbisGIS server
-		var noiseMap = L.tileLayer.wms("http://services.orbisgis.org/wms/wms", {
-    		layers: 'bat_resid_2008_nantes_noiseLevel',
-    		format: 'image/png',
-    		transparent: true,
-		styles:'bat_resid_2008_nantes_noiseLevel',
-		version:'1.3.0',
-    		attribution: "LDEN max en dB(A) par bâtiments"
-		});
-
-		
-
-		var iris_contour = L.tileLayer.wms("http://services.orbisgis.org/wms/wms", {
-    		layers: 'iris2008_lden_greaterthan68',
-    		format: 'image/png',
-    		transparent: true,
-		styles:'iris_contour',
-		version:'1.3.0',
-    		attribution: "Contour IRIS"
-		});
-
-		var iris_2008_max68 = L.tileLayer.wms("http://services.orbisgis.org/wms/wms", {
-    		layers: 'iris2008_lden_greaterthan68',
-    		format: 'image/png',
-    		transparent: true,
-		styles:'iris_ldengreaterthan68_2008_categorize',
-		version:'1.3.0',
-    		attribution: "LDEN superieur à 68 dB(A) en 2008"
-		});
-
-	
-		map.addLayer(noiseMap);
-		map.addLayer(iris_contour);
-	
-	//Create a custom group of layers
-	var baseLayers = {
-	"Fond de carte": basemap
-	};
-	
-	//Results from ANR EvalPDU
-	var evalpdu = new L.LayerGroup();
-	evalpdu.addLayer(iris_2008_max68);//.addTo(map);
-
-	// Overlay layers are grouped
-	var groupedOverlays = {
-	"Noise maps": {
-	"Contour IRIS": iris_contour,
-	"Scenarios": evalpdu,
-	"LDEN par bâtiments": noiseMap
-	}
-	};
-
-
-	//Load the group layers plugin
-	new L.control.groupedLayers(baseLayers, groupedOverlays).addTo(map);
-	
-	//Load mouse position plugin
-	new L.control.mousePosition().addTo(map);
-	
-	//Load the geosearch plugin
-        new L.Control.GeoSearch({
-            provider: new L.GeoSearch.Provider.OpenStreetMap()
-        }).addTo(map);
-
-	//Load the MiniMap plugin
-	var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-		var osmAttrib='Map data &copy; OpenStreetMap contributors';
-		var osm2 = new L.TileLayer(osmUrl, {minZoom: 0, maxZoom: 13, attribution: osmAttrib});
-	var miniMap = new L.Control.MiniMap(osm2, { toggleDisplay: true }).addTo(map);
-		
-	</script>
-</body>
 </html>
