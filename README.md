@@ -2,9 +2,7 @@
 
 [WebCarto][] is a website for consulting maps online.
 
-WebCarto is based on open source software ([Leaflet][], [typeahead.js], [Bootstrap], etc.).
-
-It uses the excellent [Bootleaf][] project.
+WebCarto is based on open source software ([Leaflet][], [typeahead.js], [Bootstrap], [Bootleaf][], etc.).
 
 [WebCarto]: http://www.cartopolis.org
 [Leaflet]: https://github.com/Leaflet/Leaflet
