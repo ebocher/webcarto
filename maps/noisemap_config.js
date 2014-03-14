@@ -79,7 +79,7 @@ var noiseMap_bat_2008 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/w
     layers: 'IRSTV:noise_level_bat_resid_2008_nantes',
     format: 'image/png',
     transparent: true,
-    styles: 'Noise_map_db_bat_resid_2008',
+    styles: 'Noise_map_db_bat_resid_2008_3d',
     version: '1.3.0',
     attribution: "Année de référence avec données d'enquêtes."
 });
