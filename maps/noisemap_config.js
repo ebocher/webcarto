@@ -1,9 +1,11 @@
 var map;
 
 // fullzoom area 
-var southWest = L.latLng(47.18, -1.62),
-        northEast = L.latLng(47.29, -1.46),
+var southWest = L.latLng(47.21, -1.58),
+        northEast = L.latLng(47.22, -1.51),
         bounds = L.latLngBounds(southWest, northEast);
+
+
 
 var rising = L.geoJson(null, {
     pointToLayer: function (feature, latlng) {
@@ -64,7 +66,7 @@ var basemap = L.tileLayer(cloudmadeUrl, {attribution: '&copy; <a href="http://os
 
 
 map = L.map("map", {
-    zoom: 13,
+    zoom: 15,
     center: bounds.getCenter(),
     layers: [basemap, rising]
 });
@@ -81,7 +83,7 @@ var noiseMap_bat_2008 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/w
     transparent: true,
     styles: 'Noise_map_db_bat_resid_2008_3d',
     version: '1.3.0',
-    attribution: "Année de référence avec données d'enquêtes."
+    attribution: "Année de référence avec données d'enquêtes.", minZoom:15, maxZoom: 18
 });
 
 var noiseMap_bat_test1 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/wms", {
@@ -90,7 +92,7 @@ var noiseMap_bat_test1 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/
     transparent: true,
     styles: 'Noise_map_db_bat_resid_test_1',
     version: '1.3.0',
-    attribution: "Baisse de la demande automobile de 25%. "
+    attribution: "Baisse de la demande automobile de 25%.",minZoom:15, maxZoom: 18
 });
 
 var noiseMap_bat_test2 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/wms", {
@@ -99,7 +101,7 @@ var noiseMap_bat_test2 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/
     transparent: true,
     styles: 'Noise_map_db_bat_resid_test_2',
     version: '1.3.0',
-    attribution: "Augmentation de la demande globale de déplacement de 20%."
+    attribution: "Augmentation de la demande globale de déplacement de 20%.",minZoom:15, maxZoom: 18
 });
 
 var noiseMap_bat_test4 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/wms", {
@@ -108,7 +110,7 @@ var noiseMap_bat_test4 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/
     transparent: true,
     styles: 'Noise_map_db_bat_resid_test_4',
     version: '1.3.0',
-    attribution: "Multiplication par deux des prix du carburant"
+    attribution: "Multiplication par deux des prix du carburant",minZoom:15, maxZoom: 18
 });
 
 map.addLayer(noiseMap_bat_2008);
@@ -127,7 +129,7 @@ var iris_lden_2008 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/wms"
     format: 'image/png',
     transparent: true,
     styles: 'Noise_map_db_pop_sup_68db',
-    version: '1.3.0'
+    version: '1.3.0', minZoom:0, maxZoom: 12
 });
 
 
@@ -136,7 +138,7 @@ var iris_lden_test1 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/wms
     format: 'image/png',
     transparent: true,
     styles: 'Noise_map_db_pop_sup_68db',
-    version: '1.3.0'
+    version: '1.3.0', minZoom:0, maxZoom: 12
 });
 
 var iris_lden_test2 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/wms", {
@@ -144,7 +146,7 @@ var iris_lden_test2 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/wms
     format: 'image/png',
     transparent: true,
     styles: 'Noise_map_db_pop_sup_68db',
-    version: '1.3.0'
+    version: '1.3.0',minZoom:0, maxZoom: 12
 });
 
 var iris_lden_test4 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/wms", {
@@ -152,7 +154,7 @@ var iris_lden_test4 = L.tileLayer.wms("http://cartopolis.org/geoserver/IRSTV/wms
     format: 'image/png',
     transparent: true,
     styles: 'Noise_map_db_pop_sup_68db',
-    version: '1.3.0'
+    version: '1.3.0',minZoom:0, maxZoom: 12
 });
 
 
@@ -190,9 +192,21 @@ var sidebar = L.control.sidebar("sidebar", {
 }).addTo(map);
 
 
+map.on('overlayadd', function (eventLayer) {
+    // Switch to the layer...
+ if (eventLayer.name === 'Scénario test 1') {
+console.log("layer name "+  eventLayer.name);
+console.log("zoom "+ map.getZoom());
+layerControl.removeLayer(noiseMap_bat_test2);
+}
+});
+
+
+
+
 //Create a legend for noise map
 legend1 = function() {
-    var div = L.DomUtil.create('div', 'info legend'), labels = ["<h6>Nuisance sonore <br> en dB(A)</h6>"];
+    var div = L.DomUtil.create('div', 'info legend'), labels = ["<h6>LDEN max en dB(A)<br>par bâtiments</h6>"];
     div.innerHTML = labels.join('');
     div.innerHTML += '<img src="http://www.cartopolis.org/geoserver/IRSTV/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=IRSTV:noise_level_bat_resid_2008_nantes" alt="legend" width="58" height="140">';
     return div;
@@ -200,7 +214,7 @@ legend1 = function() {
 
 //Create a legend for noise map
 legend2 = function() {
-    var div = L.DomUtil.create('div', 'info legend'), labels = ["<h6>Pourcentage d'habitants <br> (> 68dB (A))</h6>"];
+    var div = L.DomUtil.create('div', 'info legend'), labels = ["<h6>Exposition de la population <br>(% d'habs > 68 dB(A))</h6>"];
     ;
     div.innerHTML = labels.join('');
     div.innerHTML += '<img src="http://www.cartopolis.org/geoserver/IRSTV/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=IRSTV:iris2008_lden2008_nantes" alt="legend" width="66" height="120">';
@@ -210,7 +224,6 @@ legend2 = function() {
 //Add the legends to the legend frame
 $("#legendBar").html(legend1);
 $("#legendBar").append(legend2);
-
 
 
 // Highlight search box text on click
