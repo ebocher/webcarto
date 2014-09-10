@@ -183,23 +183,14 @@ var layerControl = L.control.groupedLayers(baseLayers, groupedLDENBat);
 map.addControl(layerControl);
 
 //Load mouse position plugin
-var mousePosition =  L.control.mousePosition();
-map.addControl(mousePosition);
+//var mousePosition =  L.control.mousePosition();
+//map.addControl(mousePosition);
 
 var sidebar = L.control.sidebar("sidebar", {
     closeButton: true,
     position: "left"
 }).addTo(map);
 
-
-map.on('overlayadd', function (eventLayer) {
-    // Switch to the layer...
- if (eventLayer.name === 'Scénario test 1') {
-console.log("layer name "+  eventLayer.name);
-console.log("zoom "+ map.getZoom());
-layerControl.removeLayer(noiseMap_bat_test2);
-}
-});
 
 
 
@@ -217,7 +208,7 @@ legend2 = function() {
     var div = L.DomUtil.create('div', 'info legend'), labels = ["<h6>Exposition de la population <br>(% d'habs > 68 dB(A))</h6>"];
     ;
     div.innerHTML = labels.join('');
-    div.innerHTML += '<img src="http://www.cartopolis.org/geoserver/IRSTV/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=IRSTV:iris2008_lden2008_nantes" alt="legend" width="66" height="120">';
+    div.innerHTML += '<img src="http://www.cartopolis.org/geoserver/IRSTV/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=IRSTV:iris2008_lden2008_nantes" alt="legend" width="58" height="100">';
     return div;
 };
 
